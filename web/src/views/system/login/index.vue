@@ -43,7 +43,7 @@
 			</div>
 		</div>
 
-		<div class="login-authorization z-10">
+		<!-- <div class="login-authorization z-10">
 			<p>Copyright © {{ getSystemConfig['login.copyright'] || '2021-2024 django-vue-admin.com' }} 版权所有</p>
 			<p class="la-other">
 				<a href="https://beian.miit.gov.cn" target="_blank">{{ getSystemConfig['login.keep_record'] ||
@@ -58,7 +58,7 @@
 				<a
 					:href="getSystemConfig['login.clause_url'] ? getBaseURL(getSystemConfig['login.clause_url']) : '#'">条款</a>
 			</p>
-		</div>
+		</div> -->
 	</div>
 	<div v-if="siteBg">
 		<img :src="siteBg" class="fixed inset-0 z-1 w-full h-full" />
@@ -140,8 +140,8 @@ onMounted(() => {
 			animation: logoAnimation 0.3s ease;
 
 			img {
-				width: 52px;
-				height: 52px;
+				width: 70px;
+				height: 70px;
 			}
 
 			.login-left-logo-text {
@@ -150,13 +150,15 @@ onMounted(() => {
 
 				span {
 					margin-left: 10px;
-					font-size: 16px;
-					color: var(--el-color-primary);
+					font-size: 32px;
+					color: rgb(39, 94, 147);
+					font-weight: bolder; /* 设置字体变粗 */
 				}
 
 				.login-left-logo-text-msg {
-					font-size: 12px;
-					color: var(--el-color-primary);
+					font-size: 20px;
+					color: rgb(39, 94, 147);
+					font-weight: medium;
 				}
 			}
 		}
