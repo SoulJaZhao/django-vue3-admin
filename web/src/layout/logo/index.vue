@@ -55,6 +55,7 @@ const siteLogo = computed(() => {
 	box-shadow: rgb(0 21 41 / 2%) 0px 1px 4px;
 	color: var(--el-color-primary);
 	font-size: 16px;
+	font-weight: bold;
 	cursor: pointer;
 	animation: logoAnimation 0.3s ease-in-out;
 

@@ -33,11 +33,11 @@
 								</el-tab-pane> -->
 							</el-tabs>
 						</div>
-						<Scan v-if="state.isScan" />
+						<!-- <Scan v-if="state.isScan" />
 						<div class="login-content-main-sacn" @click="state.isScan = !state.isScan">
 							<i class="iconfont" :class="state.isScan ? 'icon-diannao1' : 'icon-barcode-qr'"></i>
 							<div class="login-content-main-sacn-delta"></div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
@@ -72,6 +72,7 @@ import { useThemeConfig } from '/@/stores/themeConfig';
 import { NextLoading } from '/@/utils/loading';
 import logoMini from '/@/assets/logo-mini.svg';
 import loginMain from '/@/assets/login-main.svg';
+import loginIoT from '/@/assets/login-iot.svg';
 import loginBg from '/@/assets/login-bg.svg';
 import { SystemConfigStore } from '/@/stores/systemConfig'
 import { getBaseURL } from "/@/utils/baseUrl";

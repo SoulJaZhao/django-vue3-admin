@@ -68,10 +68,15 @@ onMounted(() => {
 			setingsRef.value.openDrawer();
 		});
 		// 获取缓存中的布局配置
-		if (Local.get('themeConfig')) {
-			storesThemeConfig.setThemeConfig({ themeConfig: Local.get('themeConfig') });
-			document.documentElement.style.cssText = Local.get('themeConfigStyle');
+		let theConfig = Local.get('themeConfig');
+		if (theConfig) {
+			if (theConfig.ver !== themeConfig.value.ver) {
+				theConfig = themeConfig.value;
+				Local.remove('themeConfig');
+				Local.set('themeConfig', theConfig);
+			}
 		}
+
 		// 获取缓存中的全屏配置
 		if (Session.get('isTagsViewCurrenFull')) {
 			stores.setCurrenFullscreen(Session.get('isTagsViewCurrenFull'));
