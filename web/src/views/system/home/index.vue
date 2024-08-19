@@ -1,16 +1,8 @@
 <template>
 	<div class="home-container">
 		<el-row :gutter="15" class="home-card-one mb15">
-			<el-col
-				:xs="24"
-				:sm="12"
-				:md="12"
-				:lg="6"
-				:xl="6"
-				v-for="(v, k) in homeOne"
-				:key="k"
-				:class="{ 'home-media home-media-lg': k > 1, 'home-media-sm': k === 1 }"
-			>
+			<el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6" v-for="(v, k) in homeOne" :key="k"
+				:class="{ 'home-media home-media-lg': k > 1, 'home-media-sm': k === 1 }">
 				<div class="home-card-item flex">
 					<div class="flex-margin flex w100" :class="` home-one-animation${k}`">
 						<div class="flex-auto">
@@ -26,14 +18,26 @@
 			</el-col>
 		</el-row>
 		<el-row :gutter="15" class="home-card-two mb15">
-			<el-col :xs="24" :sm="14" :md="14" :lg="16" :xl="16">
+			<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
 				<div class="home-card-item">
 					<div style="height: 100%" ref="homeLineRef"></div>
 				</div>
 			</el-col>
-			<el-col :xs="24" :sm="10" :md="10" :lg="8" :xl="8" class="home-media">
+			<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="home-media">
 				<div class="home-card-item">
 					<div style="height: 100%" ref="homePieRef"></div>
+				</div>
+			</el-col>
+		</el-row>
+		<el-row :gutter="15" class="home-card-two mb15">
+			<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
+				<div class="home-card-item">
+					<div style="height: 100%" ref="homeBarRiskEventsRef"></div>
+				</div>
+			</el-col>
+			<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="home-media">
+				<div class="home-card-item">
+					<div style="height: 100%" ref="homeGaugeNodeHealthRef"></div>
 				</div>
 			</el-col>
 		</el-row>
@@ -75,6 +79,8 @@ import { useTagsViewRoutes } from '/@/stores/tagsViewRoutes';
 let global: any = {
 	homeChartOne: null,
 	homeChartTwo: null,
+	homeChartRiskEvents: null,
+	homeChartNodeHealthGauge: null,
 	homeCharThree: null,
 	dispose: [null, '', undefined],
 };
@@ -85,6 +91,8 @@ export default defineComponent({
 		const homeLineRef = ref();
 		const homePieRef = ref();
 		const homeBarRef = ref();
+		const homeBarRiskEventsRef = ref();
+		const homeGaugeNodeHealthRef = ref();
 		const storesTagsViewRoutes = useTagsViewRoutes();
 		const storesThemeConfig = useThemeConfig();
 		const { themeConfig } = storeToRefs(storesThemeConfig);
@@ -92,36 +100,36 @@ export default defineComponent({
 		const state = reactive({
 			homeOne: [
 				{
-					num1: '125,12',
+					num1: '49.28',
 					num2: '-12.32',
-					num3: '订单统计信息',
+					num3: '当日网络流量(TB)',
 					num4: 'fa fa-meetup',
 					color1: '#FF6462',
 					color2: '--next-color-primary-lighter',
 					color3: '--el-color-primary',
 				},
 				{
-					num1: '653,33',
+					num1: '15392',
 					num2: '+42.32',
-					num3: '月度计划信息',
+					num3: '当日活跃连接（个）',
 					num4: 'iconfont icon-ditu',
 					color1: '#6690F9',
 					color2: '--next-color-success-lighter',
 					color3: '--el-color-success',
 				},
 				{
-					num1: '125,65',
-					num2: '+17.32',
-					num3: '年度计划信息',
+					num1: '2365',
+					num2: '-17.32',
+					num3: '当日安全威胁事件（件）',
 					num4: 'iconfont icon-zaosheng',
 					color1: '#6690F9',
 					color2: '--next-color-warning-lighter',
 					color3: '--el-color-warning',
 				},
 				{
-					num1: '520,43',
-					num2: '-10.01',
-					num3: '访问统计信息',
+					num1: '98.88',
+					num2: '+0.01',
+					num3: '当日系统健康评分（%）',
 					num4: 'fa fa-github-alt',
 					color1: '#FF6462',
 					color2: '--next-color-danger-lighter',
@@ -198,31 +206,31 @@ export default defineComponent({
 			const option = {
 				backgroundColor: state.charts.bgColor,
 				title: {
-					text: '政策补贴额度',
+					text: '流量历史',
 					x: 'left',
 					textStyle: { fontSize: '15', color: state.charts.color },
 				},
 				grid: { top: 70, right: 20, bottom: 30, left: 30 },
 				tooltip: { trigger: 'axis' },
-				legend: { data: ['预购队列', '最新成交价'], right: 0 },
+				legend: { data: ['近一年数据'], right: 0 },
 				xAxis: {
-					data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+					data: ['2023/9', '2023/10', '2023/11', '2023/12', '2024/1', '2024/2', '2024/3', '2024/4', '2024/5', '2024/6', '2024/7', '2024/8'],
 				},
 				yAxis: [
 					{
 						type: 'value',
-						name: '价格',
+						name: 'TB',
 						splitLine: { show: true, lineStyle: { type: 'dashed', color: '#f5f5f5' } },
 					},
 				],
 				series: [
 					{
-						name: '预购队列',
+						name: '月度数据',
 						type: 'line',
 						symbolSize: 6,
 						symbol: 'circle',
 						smooth: true,
-						data: [0, 41.1, 30.4, 65.1, 53.3, 53.3, 53.3, 41.1, 30.4, 65.1, 53.3, 10],
+						data: [52.89, 46.13, 51.56, 46.11, 46.25, 51.68, 48.34, 51.02, 53.47, 47.19, 47.28, 53.73],
 						lineStyle: { color: '#fe9a8b' },
 						itemStyle: { color: '#fe9a8b', borderColor: '#fe9a8b' },
 						areaStyle: {
@@ -230,42 +238,6 @@ export default defineComponent({
 								{ offset: 0, color: '#fe9a8bb3' },
 								{ offset: 1, color: '#fe9a8b03' },
 							]),
-						},
-					},
-					{
-						name: '最新成交价',
-						type: 'line',
-						symbolSize: 6,
-						symbol: 'circle',
-						smooth: true,
-						data: [0, 24.1, 7.2, 15.5, 42.4, 42.4, 42.4, 24.1, 7.2, 15.5, 42.4, 0],
-						lineStyle: { color: '#9E87FF' },
-						itemStyle: { color: '#9E87FF', borderColor: '#9E87FF' },
-						areaStyle: {
-							color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-								{ offset: 0, color: '#9E87FFb3' },
-								{ offset: 1, color: '#9E87FF03' },
-							]),
-						},
-						emphasis: {
-							itemStyle: {
-								color: {
-									type: 'radial',
-									x: 0.5,
-									y: 0.5,
-									r: 0.5,
-									colorStops: [
-										{ offset: 0, color: '#9E87FF' },
-										{ offset: 0.4, color: '#9E87FF' },
-										{ offset: 0.5, color: '#fff' },
-										{ offset: 0.7, color: '#fff' },
-										{ offset: 0.8, color: '#fff' },
-										{ offset: 1, color: '#fff' },
-									],
-								},
-								borderColor: '#9E87FF',
-								borderWidth: 2,
-							},
 						},
 					},
 				],
@@ -277,17 +249,17 @@ export default defineComponent({
 		const initPieChart = () => {
 			if (!global.dispose.some((b: any) => b === global.homeChartTwo)) global.homeChartTwo.dispose();
 			global.homeChartTwo = <any>echarts.init(homePieRef.value, state.charts.theme);
-			var getname = ['房屋及结构物', '专用设备', '通用设备', '文物和陈列品', '图书、档案'];
-			var getvalue = [34.2, 38.87, 17.88, 9.05, 2.05];
+			var getname = ['后门攻击', 'DoS攻击', 'DDoS攻击', 'SQL注入攻击', '中间人攻击', '密码攻击', '勒索病毒', '扫描攻击', 'XSS攻击'];
+			var getvalue = [12.34, 9.87, 14.56, 11.23, 8.90, 10.45, 15.67, 9.12, 7.86];  // Mock 数据
 			var data = [];
 			for (var i = 0; i < getname.length; i++) {
 				data.push({ name: getname[i], value: getvalue[i] });
 			}
-			const colorList = ['#51A3FC', '#36C78B', '#FEC279', '#968AF5', '#E790E8'];
+			const colorList = ['#51A3FC', '#36C78B', '#FEC279', '#968AF5', '#E790E8', '#FF5733', '#C70039', '#900C3F', '#581845'];
 			const option = {
 				backgroundColor: state.charts.bgColor,
 				title: {
-					text: '房屋建筑工程',
+					text: '攻击类型分布',
 					x: 'left',
 					textStyle: { fontSize: '15', color: state.charts.color },
 				},
@@ -349,8 +321,8 @@ export default defineComponent({
 								return colorList[params.dataIndex];
 							},
 						},
-						label: { show: false },
-						labelLine: { show: false },
+						label: { show: true },
+						labelLine: { show: true },
 						data: data,
 					},
 				],
@@ -358,137 +330,194 @@ export default defineComponent({
 			(<any>global.homeChartTwo).setOption(option);
 			(<any>state.myCharts).push(global.homeChartTwo);
 		};
+
 		// 柱状图
-		const initBarChart = () => {
-			if (!global.dispose.some((b: any) => b === global.homeCharThree)) global.homeCharThree.dispose();
-			global.homeCharThree = <any>echarts.init(homeBarRef.value, state.charts.theme);
+		const initRiskEventsBarChart = () => {
+			if (!global.dispose || !global.dispose.some((b: any) => b === global.homeChartRiskEvents)) {
+				global.homeChartRiskEvents.dispose();
+			}
+
+			global.homeChartRiskEvents = echarts.init(homeBarRiskEventsRef.value, state.charts.theme);
+
+			const generateMockData = (min, max, length) => {
+				return Array.from({ length }, () => Math.floor(Math.random() * (max - min + 1)) + min);
+			};
+
+			const riskEventsData = {
+				months: ['2023/9', '2023/10', '2023/11', '2023/12', '2024/1', '2024/2', '2024/3', '2024/4', '2024/5', '2024/6', '2024/7', '2024/8'],
+				events: [
+					{
+						name: 'CPU过度占用',
+						data: generateMockData(20, 190, 12),  // 生成 12 个月的数据，范围在 10 到 30 之间
+					},
+					{
+						name: 'GPU过度占用',
+						data: generateMockData(35, 300, 12),  // 生成 12 个月的数据，范围在 15 到 35 之间
+					},
+					{
+						name: '存储过度占用',
+						data: generateMockData(25, 195, 12),   // 生成 12 个月的数据，范围在 5 到 25 之间
+					},
+					{
+						name: '带宽过度占用',
+						data: generateMockData(48, 128, 12),   // 生成 12 个月的数据，范围在 8 到 28 之间
+					},
+				],
+			};
+
 			const option = {
 				backgroundColor: state.charts.bgColor,
 				title: {
-					text: '地热开发利用',
+					text: '风险事件处理情况',
 					x: 'left',
 					textStyle: { fontSize: '15', color: state.charts.color },
 				},
 				tooltip: { trigger: 'axis' },
-				legend: { data: ['供温', '回温', '压力值(Mpa)'], right: 0 },
-				grid: { top: 70, right: 80, bottom: 30, left: 80 },
-				xAxis: [
-					{
-						type: 'category',
-						data: ['1km', '2km', '3km', '4km', '5km', '6km'],
-						boundaryGap: true,
-						axisTick: { show: false },
+				legend: { selectedMode: false },
+				xAxis: {
+					type: 'category',
+					data: riskEventsData.months,
+					boundaryGap: true,
+					axisTick: { show: false },
+				},
+				yAxis: {
+					type: 'value',
+				},
+				series: riskEventsData.events.map(event => ({
+					name: event.name,
+					type: 'bar',
+					stack: 'total',
+					label: {
+						show: true,
+						position: 'inside',
+						formatter: '{c}',
 					},
-				],
-				yAxis: [
-					{
-						name: '供回温度(℃）',
-						nameLocation: 'middle',
-						nameTextStyle: { padding: [3, 4, 50, 6] },
-						splitLine: { show: true, lineStyle: { type: 'dashed', color: '#f5f5f5' } },
-						axisLine: { show: false },
-						axisTick: { show: false },
-						axisLabel: { color: state.charts.color, formatter: '{value} ' },
-					},
-					{
-						name: '压力值(Mpa)',
-						nameLocation: 'middle',
-						nameTextStyle: { padding: [50, 4, 5, 6] },
-						splitLine: { show: false },
-						axisLine: { show: false },
-						axisTick: { show: false },
-						axisLabel: { color: state.charts.color, formatter: '{value} ' },
-					},
-				],
+					data: event.data,
+				})),
+			};
+			(<any>global.homeChartRiskEvents).setOption(option);
+			(<any>state.myCharts).push(global.homeChartRiskEvents);
+		};
+
+		// 仪表盘
+		const initNodeHealthGaugeChart = () => {
+			if (!global.dispose || !global.dispose.some((b: any) => b === global.homeChartNodeHealthGauge)) {
+				global.homeChartNodeHealthGauge.dispose();
+			}
+
+			global.homeChartNodeHealthGauge = echarts.init(homeGaugeNodeHealthRef.value, state.charts.theme);
+
+			// 生成Mock数据
+			const mockData = [
+				{ name: '攻击检测', value: 98.29 }, // 假设的CPU使用率
+				{ name: '响应时间', value: 95.36 }, // 假设的内存使用率
+				{ name: '可用性', value: 99.85 }  // 假设的存储使用率
+			];
+
+			const option = {
+				title: {
+					text: '边缘节点健康指数',
+					left: 'center',
+					textStyle: {
+						fontSize: 16,
+						fontWeight: 'bold'
+					}
+				},
+				tooltip: {
+					formatter: '{a} <br/>{b} : {c}%'
+				},
 				series: [
 					{
-						name: '供温',
-						type: 'line',
-						smooth: true,
-						showSymbol: true,
-						// 矢量画五角星
-						symbol: 'path://M150 0 L80 175 L250 75 L50 75 L220 175 Z',
-						symbolSize: 12,
-						yAxisIndex: 0,
-						areaStyle: {
-							color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-								{ offset: 0, color: 'rgba(250,180,101,0.3)' },
-								{ offset: 1, color: 'rgba(250,180,101,0)' },
-							]),
-							shadowColor: 'rgba(250,180,101,0.2)',
-							shadowBlur: 20,
+						name: '攻击检测',
+						type: 'gauge',
+						center: ['20%', '50%'], // 图表的中心位置
+						radius: '50%',
+						min: 0,
+						max: 100,
+						splitNumber: 10,
+						axisLine: {
+							lineStyle: {
+								width: 10,
+								color: [[0.3, '#67e0e3'], [0.7, '#37a2da'], [1, '#fd666d']]
+							}
 						},
-						itemStyle: { color: '#FF8000' },
-						// data中可以使用对象，value代表相应的值，另外可加入自定义的属性
-						data: [
-							{ value: 1, stationName: 's1' },
-							{ value: 3, stationName: 's2' },
-							{ value: 4, stationName: 's3' },
-							{ value: 9, stationName: 's4' },
-							{ value: 3, stationName: 's5' },
-							{ value: 2, stationName: 's6' },
-						],
+						pointer: {
+							width: 5,
+						},
+						title: {
+							offsetCenter: [0, '-30%'], // 标题位置
+							fontSize: 14
+						},
+						detail: {
+							formatter: '{value}%',
+							fontSize: 16,
+							offsetCenter: [0, '60%']
+						},
+						data: [{ value: mockData[0].value, name: mockData[0].name }]
 					},
 					{
-						name: '回温',
-						type: 'line',
-						smooth: true,
-						showSymbol: true,
-						symbol: 'emptyCircle',
-						symbolSize: 12,
-						yAxisIndex: 0,
-						areaStyle: {
-							color: new echarts.graphic.LinearGradient(
-								0,
-								0,
-								0,
-								1,
-								[
-									{ offset: 0, color: 'rgba(199, 237, 250,0.5)' },
-									{ offset: 1, color: 'rgba(199, 237, 250,0.2)' },
-								],
-								false
-							),
+						name: '响应时间',
+						type: 'gauge',
+						center: ['50%', '50%'], // 图表的中心位置
+						radius: '50%',
+						min: 0,
+						max: 100,
+						splitNumber: 10,
+						axisLine: {
+							lineStyle: {
+								width: 10,
+								color: [[0.3, '#67e0e3'], [0.7, '#37a2da'], [1, '#fd666d']]
+							}
 						},
-						itemStyle: {
-							color: '#3bbc86',
+						pointer: {
+							width: 5,
 						},
-						data: [
-							{ value: 31, stationName: 's1' },
-							{ value: 36, stationName: 's2' },
-							{ value: 54, stationName: 's3' },
-							{ value: 24, stationName: 's4' },
-							{ value: 73, stationName: 's5' },
-							{ value: 22, stationName: 's6' },
-						],
+						title: {
+							offsetCenter: [0, '-30%'], // 标题位置
+							fontSize: 14
+						},
+						detail: {
+							formatter: '{value}%',
+							fontSize: 16,
+							offsetCenter: [0, '60%']
+						},
+						data: [{ value: mockData[1].value, name: mockData[1].name }]
 					},
 					{
-						name: '压力值(Mpa)',
-						type: 'bar',
-						barWidth: 30,
-						yAxisIndex: 1,
-						itemStyle: {
-							color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-								{ offset: 0, color: 'rgba(108,80,243,0.3)' },
-								{ offset: 1, color: 'rgba(108,80,243,0)' },
-							]),
-							//柱状图圆角
-							borderRadius: [30, 30, 0, 0],
+						name: '可用性',
+						type: 'gauge',
+						center: ['80%', '50%'], // 图表的中心位置
+						radius: '50%',
+						min: 0,
+						max: 100,
+						splitNumber: 10,
+						axisLine: {
+							lineStyle: {
+								width: 10,
+								color: [[0.3, '#67e0e3'], [0.7, '#37a2da'], [1, '#fd666d']]
+							}
 						},
-						data: [
-							{ value: 11, stationName: 's1' },
-							{ value: 34, stationName: 's2' },
-							{ value: 54, stationName: 's3' },
-							{ value: 39, stationName: 's4' },
-							{ value: 63, stationName: 's5' },
-							{ value: 24, stationName: 's6' },
-						],
-					},
-				],
+						pointer: {
+							width: 5,
+						},
+						title: {
+							offsetCenter: [0, '-30%'], // 标题位置
+							fontSize: 14
+						},
+						detail: {
+							formatter: '{value}%',
+							fontSize: 16,
+							offsetCenter: [0, '60%']
+						},
+						data: [{ value: mockData[2].value, name: mockData[2].name }]
+					}
+				]
 			};
-			(<any>global.homeCharThree).setOption(option);
-			(<any>state.myCharts).push(global.homeCharThree);
-		};
+
+			(<any>global.homeChartNodeHealthGauge).setOption(option);
+			(<any>state.myCharts).push(global.homeChartNodeHealthGauge);
+		}
+
 		// 批量设置 echarts resize
 		const initEchartsResizeFun = () => {
 			nextTick(() => {
@@ -533,6 +562,12 @@ export default defineComponent({
 						initPieChart();
 					}, 700);
 					setTimeout(() => {
+						initNodeHealthGaugeChart();
+					}, 800);
+					setTimeout(() => {
+						initRiskEventsBarChart();
+					}, 900);
+					setTimeout(() => {
 						initBarChart();
 					}, 1000);
 				});
@@ -545,6 +580,8 @@ export default defineComponent({
 		return {
 			homeLineRef,
 			homePieRef,
+			homeBarRiskEventsRef,
+			homeGaugeNodeHealthRef,
 			homeBarRef,
 			...toRefs(state),
 		};
@@ -554,8 +591,10 @@ export default defineComponent({
 
 <style scoped lang="scss">
 $homeNavLengh: 8;
+
 .home-container {
 	overflow: hidden;
+
 	.home-card-one,
 	.home-card-two,
 	.home-card-three {
@@ -569,19 +608,23 @@ $homeNavLengh: 8;
 			background: var(--el-color-white);
 			color: var(--el-text-color-primary);
 			border: 1px solid var(--next-border-color-light);
+
 			&:hover {
 				box-shadow: 0 2px 12px var(--next-color-dark-hover);
 				transition: all ease 0.3s;
 			}
+
 			&-icon {
 				width: 70px;
 				height: 70px;
 				border-radius: 100%;
 				flex-shrink: 1;
+
 				i {
 					color: var(--el-text-color-placeholder);
 				}
 			}
+
 			&-title {
 				font-size: 15px;
 				font-weight: bold;
@@ -589,6 +632,7 @@ $homeNavLengh: 8;
 			}
 		}
 	}
+
 	.home-card-one {
 		@for $i from 0 through 3 {
 			.home-one-animation#{$i} {
@@ -600,18 +644,22 @@ $homeNavLengh: 8;
 			}
 		}
 	}
+
 	.home-card-two,
 	.home-card-three {
 		.home-card-item {
 			height: 400px;
 			width: 100%;
 			overflow: hidden;
+
 			.home-monitor {
 				height: 100%;
+
 				.flex-warp-item {
 					width: 25%;
 					height: 111px;
 					display: flex;
+
 					.flex-warp-item-box {
 						margin: auto;
 						text-align: center;
@@ -621,11 +669,13 @@ $homeNavLengh: 8;
 						background: var(--next-bg-color);
 						cursor: pointer;
 						transition: all 0.3s ease;
+
 						&:hover {
 							background: var(--el-color-primary-light-9);
 							transition: all 0.3s ease;
 						}
 					}
+
 					@for $i from 0 through $homeNavLengh {
 						.home-animation#{$i} {
 							opacity: 0;
