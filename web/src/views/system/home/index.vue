@@ -426,6 +426,15 @@ export default defineComponent({
 				tooltip: {
 					formatter: '{a} <br/>{b} : {c}%'
 				},
+				legend: {
+					orient: 'horizontal',
+					bottom: '0%', // 图例放置在页面底部
+					data: mockData.map(item => item.name),
+					textStyle: {
+						fontSize: 12,
+						color: '#333'
+					}
+				},
 				series: [
 					{
 						name: '攻击检测',
