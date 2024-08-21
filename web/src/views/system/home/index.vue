@@ -6,15 +6,19 @@
 					<div class="flex-margin flex w100">
 						<div class="flex-auto">
 							<span class="ml5 success-color">
-								<e-digital-flop font-size="40" color="statisticInfo.successColor" :value="statisticInfo.edgeNodeCount" />
+								<e-digital-flop font-size="40" color="statisticInfo.successColor"
+									:value="statisticInfo.edgeNodeCount" />
 							</span>
 							<span class="ml5 success-color">
-								<e-digital-flop font-size="20" color="statisticInfo.successColor" :value="statisticInfo.edgeNodeCountPercentage" :decimals="2" />%
+								<e-digital-flop font-size="20" color="statisticInfo.successColor"
+									:value="statisticInfo.edgeNodeCountPercentage" :decimals="2" />%
 							</span>
 							<div class="mt10">边缘节点总数（个）</div>
 						</div>
-						<div class="home-card-item-icon flex" :style="{ background: `var(--next-color-primary-lighter)` }">
-							<i class="flex-margin font32 fa fa-meetup" :style="{ color: `var(--el-color-primary)` }"></i>
+						<div class="home-card-item-icon flex"
+							:style="{ background: `var(--next-color-primary-lighter)` }">
+							<i class="flex-margin font32 fa fa-meetup"
+								:style="{ color: `var(--el-color-primary)` }"></i>
 						</div>
 					</div>
 				</div>
@@ -24,15 +28,19 @@
 					<div class="flex-margin flex w100">
 						<div class="flex-auto">
 							<span class="ml5 danger-color">
-								<e-digital-flop font-size="40" color="statisticInfo.dangerColor" :value="statisticInfo.networkTaffic" :decimals="2" />
+								<e-digital-flop font-size="40" color="statisticInfo.dangerColor"
+									:value="statisticInfo.networkTaffic" :decimals="2" />
 							</span>
 							<span class="ml5 font16 danger-color">
-								<e-digital-flop font-size="20" color="statisticInfo.dangerColor" :value="statisticInfo.networkTafficPercentage" :decimals="2" />%
+								<e-digital-flop font-size="20" color="statisticInfo.dangerColor"
+									:value="statisticInfo.networkTafficPercentage" :decimals="2" />%
 							</span>
 							<div class="mt10">今日网络流量（TB）</div>
 						</div>
-						<div class="home-card-item-icon flex" :style="{ background: `var(--next-color-success-lighter)` }">
-							<i class="flex-margin font32 iconfont icon-ditu" :style="{ color: `var(--el-color-success)` }"></i>
+						<div class="home-card-item-icon flex"
+							:style="{ background: `var(--next-color-success-lighter)` }">
+							<i class="flex-margin font32 iconfont icon-ditu"
+								:style="{ color: `var(--el-color-success)` }"></i>
 						</div>
 					</div>
 				</div>
@@ -42,15 +50,19 @@
 					<div class="flex-margin flex w100">
 						<div class="flex-auto">
 							<span class="ml5 danger-color">
-								<e-digital-flop font-size="40" color="statisticInfo.dangerColor" :value="statisticInfo.noticeCount" />
+								<e-digital-flop font-size="40" color="statisticInfo.dangerColor"
+									:value="statisticInfo.noticeCount" />
 							</span>
 							<span class="ml5 font16 danger-color">
-								<e-digital-flop font-size="20" color="statisticInfo.dangerColor" :value="statisticInfo.noticeCountPercentage" :decimals="2" />%
+								<e-digital-flop font-size="20" color="statisticInfo.dangerColor"
+									:value="statisticInfo.noticeCountPercentage" :decimals="2" />%
 							</span>
 							<div class="mt10">今日报警事件（件）</div>
 						</div>
-						<div class="home-card-item-icon flex" :style="{ background: `var(--next-color-danger-lighter)` }">
-							<i class="flex-margin font32 fa fa-github-alt" :style="{ color: `var(--el-color-danger)` }"></i>
+						<div class="home-card-item-icon flex"
+							:style="{ background: `var(--next-color-danger-lighter)` }">
+							<i class="flex-margin font32 fa fa-github-alt"
+								:style="{ color: `var(--el-color-danger)` }"></i>
 						</div>
 					</div>
 				</div>
@@ -60,15 +72,19 @@
 					<div class="flex-margin flex w100">
 						<div class="flex-auto">
 							<span class="ml5 success-color">
-								<e-digital-flop font-size="40" color="statisticInfo.successColor" :value="statisticInfo.healthScore" :decimals="2" />
+								<e-digital-flop font-size="40" color="statisticInfo.successColor"
+									:value="statisticInfo.healthScore" :decimals="2" />
 							</span>
 							<span class="ml5 font16 success-color">
-								<e-digital-flop font-size="20" color="statisticInfo.successColor" :value="statisticInfo.healthScorePercentage" :decimals="2" />%
+								<e-digital-flop font-size="20" color="statisticInfo.successColor"
+									:value="statisticInfo.healthScorePercentage" :decimals="2" />%
 							</span>
 							<div class="mt10">今日安全评分（%）</div>
 						</div>
-						<div class="home-card-item-icon flex" :style="{ background: `var(--next-color-warning-lighter)` }">
-							<i class="flex-margin font32 iconfont icon-zaosheng" :style="{ color: `var(--el-color-warning)` }"></i>
+						<div class="home-card-item-icon flex"
+							:style="{ background: `var(--next-color-warning-lighter)` }">
+							<i class="flex-margin font32 iconfont icon-zaosheng"
+								:style="{ color: `var(--el-color-warning)` }"></i>
 						</div>
 					</div>
 				</div>
@@ -77,12 +93,12 @@
 		<el-row :gutter="15" class="home-card-two mb15">
 			<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
 				<div class="home-card-item">
-					<div style="height: 100%" ref="homeLineRef"></div>
+					<div style="height: 100%" ref="networkTrafficRef"></div>
 				</div>
 			</el-col>
 			<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="home-media">
 				<div class="home-card-item">
-					<div style="height: 100%" ref="homePieRef"></div>
+					<div style="height: 100%" ref="attackTypeRef"></div>
 				</div>
 			</el-col>
 		</el-row>
@@ -98,31 +114,6 @@
 				</div>
 			</el-col>
 		</el-row>
-		<el-row :gutter="15" class="home-card-three">
-			<el-col :xs="24" :sm="10" :md="10" :lg="8" :xl="8">
-				<div class="home-card-item">
-					<div class="home-card-item-title">快捷导航工具</div>
-					<div class="home-monitor">
-						<div class="flex-warp">
-							<div class="flex-warp-item" v-for="(v, k) in homeThree" :key="k">
-								<div class="flex-warp-item-box" :class="`home-animation${k}`">
-									<div class="flex-margin">
-										<i :class="v.icon" :style="{ color: v.iconColor }"></i>
-										<span class="pl5">{{ v.label }}</span>
-										<div class="mt10">{{ v.value }}</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</el-col>
-			<el-col :xs="24" :sm="14" :md="14" :lg="16" :xl="16" class="home-media">
-				<div class="home-card-item">
-					<div style="height: 100%" ref="homeBarRef"></div>
-				</div>
-			</el-col>
-		</el-row>
 	</div>
 </template>
 
@@ -135,8 +126,8 @@ import { useTagsViewRoutes } from '/@/stores/tagsViewRoutes';
 import { EDigitalFlop } from 'e-datav-vue3';
 
 let global: any = {
-	homeChartOne: null,
-	homeChartTwo: null,
+	networkTrafficChart: null,
+	attackTypeChart: null,
 	homeChartRiskEvents: null,
 	homeChartNodeHealthGauge: null,
 	homeCharThree: null,
@@ -147,10 +138,10 @@ export default defineComponent({
 	name: 'home',
 	components: {
 		EDigitalFlop
-	}, 
+	},
 	setup() {
-		const homeLineRef = ref();
-		const homePieRef = ref();
+		const networkTrafficRef = ref();
+		const attackTypeRef = ref();
 		const homeBarRef = ref();
 		const homeBarRiskEventsRef = ref();
 		const homeGaugeNodeHealthRef = ref();
@@ -171,62 +162,6 @@ export default defineComponent({
 				successColor: ref('--el-color-success-light-3'),
 				dangerColor: ref('--el-color-danger-light-3')
 			},
-			homeThree: [
-				{
-					icon: 'iconfont icon-yangan',
-					label: '浅粉红',
-					value: '2.1%OBS/M',
-					iconColor: '#F72B3F',
-				},
-				{
-					icon: 'iconfont icon-wendu',
-					label: '深红(猩红)',
-					value: '30℃',
-					iconColor: '#91BFF8',
-				},
-				{
-					icon: 'iconfont icon-shidu',
-					label: '淡紫红',
-					value: '57%RH',
-					iconColor: '#88D565',
-				},
-				{
-					icon: 'iconfont icon-shidu',
-					label: '弱紫罗兰红',
-					value: '107w',
-					iconColor: '#88D565',
-				},
-				{
-					icon: 'iconfont icon-zaosheng',
-					label: '中紫罗兰红',
-					value: '57DB',
-					iconColor: '#FBD4A0',
-				},
-				{
-					icon: 'iconfont icon-zaosheng',
-					label: '紫罗兰',
-					value: '57PV',
-					iconColor: '#FBD4A0',
-				},
-				{
-					icon: 'iconfont icon-zaosheng',
-					label: '暗紫罗兰',
-					value: '517Cpd',
-					iconColor: '#FBD4A0',
-				},
-				{
-					icon: 'iconfont icon-zaosheng',
-					label: '幽灵白',
-					value: '12kg',
-					iconColor: '#FBD4A0',
-				},
-				{
-					icon: 'iconfont icon-zaosheng',
-					label: '海军蓝',
-					value: '64fm',
-					iconColor: '#FBD4A0',
-				},
-			],
 			myCharts: [],
 			charts: {
 				theme: '',
@@ -235,9 +170,9 @@ export default defineComponent({
 			},
 		});
 		// 折线图
-		const initLineChart = () => {
-			if (!global.dispose.some((b: any) => b === global.homeChartOne)) global.homeChartOne.dispose();
-			global.homeChartOne = <any>echarts.init(homeLineRef.value, state.charts.theme);
+		const initNetworkTrafficChart = () => {
+			if (!global.dispose.some((b: any) => b === global.networkTrafficChart)) global.networkTrafficChart.dispose();
+			global.networkTrafficChart = <any>echarts.init(networkTrafficRef.value, state.charts.theme);
 			const option = {
 				backgroundColor: state.charts.bgColor,
 				title: {
@@ -247,9 +182,9 @@ export default defineComponent({
 				},
 				grid: { top: 70, right: 20, bottom: 30, left: 30 },
 				tooltip: { trigger: 'axis' },
-				legend: { data: ['近一年数据'], right: 0 },
+				legend: { data: ['近一年数据', '去年同期数据'], right: 0 },
 				xAxis: {
-					data: ['2023/9', '2023/10', '2023/11', '2023/12', '2024/1', '2024/2', '2024/3', '2024/4', '2024/5', '2024/6', '2024/7', '2024/8'],
+					data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
 				},
 				yAxis: [
 					{
@@ -260,12 +195,12 @@ export default defineComponent({
 				],
 				series: [
 					{
-						name: '月度数据',
+						name: '近一年数据',
 						type: 'line',
 						symbolSize: 6,
 						symbol: 'circle',
 						smooth: true,
-						data: [52.89, 46.13, 51.56, 46.11, 46.25, 51.68, 48.34, 51.02, 53.47, 47.19, 47.28, 53.73],
+						data: [52.89, 46.13, 51.56, 46.11, 46.25, 51.68, 48.34, 51.02, null, null, null, null],
 						lineStyle: { color: '#fe9a8b' },
 						itemStyle: { color: '#fe9a8b', borderColor: '#fe9a8b' },
 						areaStyle: {
@@ -275,15 +210,31 @@ export default defineComponent({
 							]),
 						},
 					},
+					{
+						name: '去年同期数据',  // 第二条线的名称
+						type: 'line',
+						symbolSize: 6,
+						symbol: 'circle',
+						smooth: true,
+						data: [45.89, 51.13, 27.56, 42.11, 30.25, 60.68, 34.34, 48.02, 49.47, 45.19, 44.28, 48.73],  // 第二条线的数据
+						lineStyle: { color: '#5470C6' },  // 设置第二条线的颜色
+						itemStyle: { color: '#5470C6', borderColor: '#5470C6' },
+						areaStyle: {
+							color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+								{ offset: 0, color: '#5470C6b3' },
+								{ offset: 1, color: '#5470C603' },
+							]),
+						},
+					},
 				],
 			};
-			(<any>global.homeChartOne).setOption(option);
-			(<any>state.myCharts).push(global.homeChartOne);
+			(<any>global.networkTrafficChart).setOption(option);
+			(<any>state.myCharts).push(global.networkTrafficChart);
 		};
 		// 饼图
-		const initPieChart = () => {
-			if (!global.dispose.some((b: any) => b === global.homeChartTwo)) global.homeChartTwo.dispose();
-			global.homeChartTwo = <any>echarts.init(homePieRef.value, state.charts.theme);
+		const initAttackTypeChart = () => {
+			if (!global.dispose.some((b: any) => b === global.attackTypeChart)) global.attackTypeChart.dispose();
+			global.attackTypeChart = <any>echarts.init(attackTypeRef.value, state.charts.theme);
 			var getname = ['后门攻击', 'DoS攻击', 'DDoS攻击', 'SQL注入攻击', '中间人攻击', '密码攻击', '勒索病毒', '扫描攻击', 'XSS攻击'];
 			var getvalue = [12.34, 9.87, 14.56, 11.23, 8.90, 10.45, 15.67, 9.12, 7.86];  // Mock 数据
 			var data = [];
@@ -362,8 +313,8 @@ export default defineComponent({
 					},
 				],
 			};
-			(<any>global.homeChartTwo).setOption(option);
-			(<any>state.myCharts).push(global.homeChartTwo);
+			(<any>global.attackTypeChart).setOption(option);
+			(<any>state.myCharts).push(global.attackTypeChart);
 		};
 
 		// 柱状图
@@ -600,10 +551,10 @@ export default defineComponent({
 					state.charts.bgColor = isIsDark ? 'transparent' : '';
 					state.charts.color = isIsDark ? '#dadada' : '#303133';
 					setTimeout(() => {
-						initLineChart();
+						initNetworkTrafficChart();
 					}, 500);
 					setTimeout(() => {
-						initPieChart();
+						initAttackTypeChart();
 					}, 700);
 					setTimeout(() => {
 						initNodeHealthGaugeChart();
@@ -622,8 +573,8 @@ export default defineComponent({
 			}
 		);
 		return {
-			homeLineRef,
-			homePieRef,
+			networkTrafficRef,
+			attackTypeRef,
 			homeBarRiskEventsRef,
 			homeGaugeNodeHealthRef,
 			homeBarRef,

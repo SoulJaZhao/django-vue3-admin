@@ -123,7 +123,6 @@ urlpatterns = (
 
 My_Urls = (
 	[	
-        path('',include('network_detection.urls')),
     ]
 )
 

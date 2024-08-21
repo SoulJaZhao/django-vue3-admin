@@ -64,7 +64,7 @@ INSTALLED_APPS = [
 
 #主要添加如下代码
 My_Apps = [
-	'network_detection',  #新的应用写在这里
+    #新的应用写在这里
 ]
 
 INSTALLED_APPS += My_Apps
