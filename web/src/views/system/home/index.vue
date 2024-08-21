@@ -103,14 +103,89 @@
 			</el-col>
 		</el-row>
 		<el-row :gutter="15" class="home-card-two mb15">
-			<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
+			<el-col :xs="24" :sm="7" :md="7" :lg="7" :xl="7">
 				<div class="home-card-item">
-					<div style="height: 100%" ref="homeBarRiskEventsRef"></div>
+					<el-text class="mx-1" tag="b" size="large">节点任务排名</el-text>
+					<e-scroll-ranking-board style="width:100%;" :items="tasksRank" ranking-font-size="20"
+						label-font-size="15" value-font-size="25" highlight-row-num="10"
+						color="#303133"></e-scroll-ranking-board>
 				</div>
 			</el-col>
-			<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="home-media">
+			<el-col :xs="24" :sm="10" :md="10" :lg="10" :xl="10">
 				<div class="home-card-item">
-					<div style="height: 100%" ref="homeGaugeNodeHealthRef"></div>
+					<el-text class="mx-1" tag="b" size="large">满载率</el-text>
+					<el-row>
+						<el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" class="centered-col">
+							<el-progress type="dashboard" stroke-width="10" :percentage="77" :color="ringColors">
+								<template #default="{ percentage }">
+									<span class="percentage-value">{{ percentage }}%</span>
+									<span class="percentage-label">CPU利用率</span>
+								</template>
+							</el-progress>
+						</el-col>
+						<el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" class="centered-col">
+							<el-progress type="dashboard" stroke-width="10" :percentage="96" :color="ringColors">
+								<template #default="{ percentage }">
+									<span class="percentage-value">{{ percentage }}%</span>
+									<span class="percentage-label">GPU利用率</span>
+								</template>
+							</el-progress>
+						</el-col>
+						<el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" class="centered-col">
+							<el-progress type="dashboard" stroke-width="10" :percentage="91" :color="ringColors">
+								<template #default="{ percentage }">
+									<span class="percentage-value">{{ percentage }}%</span>
+									<span class="percentage-label">内存利用率</span>
+								</template>
+							</el-progress>
+						</el-col>
+						<el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" class="centered-col">
+							<el-progress type="dashboard" stroke-width="10" :percentage="89" :color="ringColors">
+								<template #default="{ percentage }">
+									<span class="percentage-value">{{ percentage }}%</span>
+									<span class="percentage-label">网络利用率</span>
+								</template>
+							</el-progress>
+						</el-col>
+						<el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" class="centered-col">
+							<el-progress type="dashboard" stroke-width="10" :percentage="31" :color="ringColors">
+								<template #default="{ percentage }">
+									<span class="percentage-value">{{ percentage }}%</span>
+									<span class="percentage-label">磁盘利用率</span>
+								</template>
+							</el-progress>
+						</el-col>
+						<el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" class="centered-col">
+							<el-progress type="dashboard" stroke-width="10" :percentage="99" :color="ringColors">
+								<template #default="{ percentage }">
+									<span class="percentage-value">{{ percentage }}%</span>
+									<span class="percentage-label">节点可用性</span>
+								</template>
+							</el-progress>
+						</el-col>
+					</el-row>
+				</div>
+			</el-col>
+			<el-col :xs="24" :sm="7" :md="7" :lg="7" :xl="7">
+				<div class="home-card-item">
+					<el-text class="mx-1" tag="b" size="large">里程碑</el-text>
+					<el-timeline style="max-width: 360px">
+						<el-timeline-item center timestamp="2024/5/12" placement="top">
+							<el-card>
+								<h4>报警精确度超过99%</h4>
+								<p>2024/5/12 20:46</p>
+							</el-card>
+						</el-timeline-item>
+						<el-timeline-item timestamp="2024/4/3" placement="top">
+							<el-card>
+								<h4>边缘节点总数超过7000</h4>
+								<p>2024/4/3 20:46</p>
+							</el-card>
+						</el-timeline-item>
+						<el-timeline-item center timestamp="2023/4/2" placement="top">
+							平台上线
+						</el-timeline-item>
+					</el-timeline>
 				</div>
 			</el-col>
 		</el-row>
@@ -123,32 +198,36 @@ import * as echarts from 'echarts';
 import { storeToRefs } from 'pinia';
 import { useThemeConfig } from '/@/stores/themeConfig';
 import { useTagsViewRoutes } from '/@/stores/tagsViewRoutes';
-import { EDigitalFlop } from 'e-datav-vue3';
+import { EDigitalFlop, EScrollRankingBoard } from 'e-datav-vue3';
 
 let global: any = {
 	networkTrafficChart: null,
 	attackTypeChart: null,
-	homeChartRiskEvents: null,
-	homeChartNodeHealthGauge: null,
-	homeCharThree: null,
 	dispose: [null, '', undefined],
 };
 
 export default defineComponent({
 	name: 'home',
 	components: {
-		EDigitalFlop
+		EDigitalFlop,
+		EScrollRankingBoard,
 	},
 	setup() {
 		const networkTrafficRef = ref();
 		const attackTypeRef = ref();
-		const homeBarRef = ref();
-		const homeBarRiskEventsRef = ref();
-		const homeGaugeNodeHealthRef = ref();
 		const storesTagsViewRoutes = useTagsViewRoutes();
 		const storesThemeConfig = useThemeConfig();
 		const { themeConfig } = storeToRefs(storesThemeConfig);
 		const { isTagsViewCurrenFull } = storeToRefs(storesTagsViewRoutes);
+
+		// ref 用法
+		const items = ref(Array(10).fill(0).map((item, index) => {
+			return {
+				label: `测试${index}`,
+				value: index * 100
+			}
+		}));
+
 		const state = reactive({
 			statisticInfo: {
 				edgeNodeCount: ref(7829),
@@ -162,6 +241,59 @@ export default defineComponent({
 				successColor: ref('--el-color-success-light-3'),
 				dangerColor: ref('--el-color-danger-light-3')
 			},
+			tasksRank: [
+				{
+					label: '北京市节点01',
+					value: 382
+				},
+				{
+					label: '上海市节点02',
+					value: 350
+				},
+				{
+					label: '广州市节点03',
+					value: 340
+				},
+				{
+					label: '深圳市节点04',
+					value: 330
+				},
+				{
+					label: '成都市节点05',
+					value: 320
+				},
+				{
+					label: '杭州市节点06',
+					value: 310
+				},
+				{
+					label: '武汉市节点07',
+					value: 300
+				},
+				{
+					label: '重庆市节点08',
+					value: 290
+				},
+				{
+					label: '南京市节点09',
+					value: 280
+				},
+				{
+					label: '西安市节点10',
+					value: 270
+				},
+				{
+					label: '青岛市节点11',
+					value: 260
+				}
+			],
+			ringColors: [
+				{ color: '#f56c6c', percentage: 20 },
+				{ color: '#909399', percentage: 50 },
+				{ color: '#67C23A', percentage: 80 },
+				{ color: '#E6A23C', percentage: 90 },
+				{ color: '#F56C6C', percentage: 100 },
+			],
 			myCharts: [],
 			charts: {
 				theme: '',
@@ -317,202 +449,6 @@ export default defineComponent({
 			(<any>state.myCharts).push(global.attackTypeChart);
 		};
 
-		// 柱状图
-		const initRiskEventsBarChart = () => {
-			if (!global.dispose || !global.dispose.some((b: any) => b === global.homeChartRiskEvents)) {
-				global.homeChartRiskEvents.dispose();
-			}
-
-			global.homeChartRiskEvents = echarts.init(homeBarRiskEventsRef.value, state.charts.theme);
-
-			const generateMockData = (min, max, length) => {
-				return Array.from({ length }, () => Math.floor(Math.random() * (max - min + 1)) + min);
-			};
-
-			const riskEventsData = {
-				months: ['2023/9', '2023/10', '2023/11', '2023/12', '2024/1', '2024/2', '2024/3', '2024/4', '2024/5', '2024/6', '2024/7', '2024/8'],
-				events: [
-					{
-						name: 'CPU过度占用',
-						data: generateMockData(20, 190, 12),  // 生成 12 个月的数据，范围在 10 到 30 之间
-					},
-					{
-						name: 'GPU过度占用',
-						data: generateMockData(35, 300, 12),  // 生成 12 个月的数据，范围在 15 到 35 之间
-					},
-					{
-						name: '存储过度占用',
-						data: generateMockData(25, 195, 12),   // 生成 12 个月的数据，范围在 5 到 25 之间
-					},
-					{
-						name: '带宽过度占用',
-						data: generateMockData(48, 128, 12),   // 生成 12 个月的数据，范围在 8 到 28 之间
-					},
-				],
-			};
-
-			const option = {
-				backgroundColor: state.charts.bgColor,
-				title: {
-					text: '风险事件处理情况',
-					x: 'left',
-					textStyle: { fontSize: '15', color: state.charts.color },
-				},
-				tooltip: { trigger: 'axis' },
-				legend: { selectedMode: false },
-				xAxis: {
-					type: 'category',
-					data: riskEventsData.months,
-					boundaryGap: true,
-					axisTick: { show: false },
-				},
-				yAxis: {
-					type: 'value',
-				},
-				series: riskEventsData.events.map(event => ({
-					name: event.name,
-					type: 'bar',
-					stack: 'total',
-					label: {
-						show: true,
-						position: 'inside',
-						formatter: '{c}',
-					},
-					data: event.data,
-				})),
-			};
-			(<any>global.homeChartRiskEvents).setOption(option);
-			(<any>state.myCharts).push(global.homeChartRiskEvents);
-		};
-
-		// 仪表盘
-		const initNodeHealthGaugeChart = () => {
-			if (!global.dispose || !global.dispose.some((b: any) => b === global.homeChartNodeHealthGauge)) {
-				global.homeChartNodeHealthGauge.dispose();
-			}
-
-			global.homeChartNodeHealthGauge = echarts.init(homeGaugeNodeHealthRef.value, state.charts.theme);
-
-			// 生成Mock数据
-			const mockData = [
-				{ name: '攻击检测', value: 98.29 }, // 假设的CPU使用率
-				{ name: '响应时间', value: 95.36 }, // 假设的内存使用率
-				{ name: '可用性', value: 99.85 }  // 假设的存储使用率
-			];
-
-			const option = {
-				title: {
-					text: '边缘节点健康指数',
-					left: 'center',
-					textStyle: {
-						fontSize: 16,
-						fontWeight: 'bold'
-					}
-				},
-				tooltip: {
-					formatter: '{a} <br/>{b} : {c}%'
-				},
-				legend: {
-					orient: 'horizontal',
-					bottom: '0%', // 图例放置在页面底部
-					data: mockData.map(item => item.name),
-					textStyle: {
-						fontSize: 12,
-						color: '#333'
-					}
-				},
-				series: [
-					{
-						name: '攻击检测',
-						type: 'gauge',
-						center: ['20%', '50%'], // 图表的中心位置
-						radius: '50%',
-						min: 0,
-						max: 100,
-						splitNumber: 10,
-						axisLine: {
-							lineStyle: {
-								width: 10,
-								color: [[0.3, '#67e0e3'], [0.7, '#37a2da'], [1, '#fd666d']]
-							}
-						},
-						pointer: {
-							width: 5,
-						},
-						title: {
-							offsetCenter: [0, '-30%'], // 标题位置
-							fontSize: 14
-						},
-						detail: {
-							formatter: '{value}%',
-							fontSize: 16,
-							offsetCenter: [0, '60%']
-						},
-						data: [{ value: mockData[0].value, name: mockData[0].name }]
-					},
-					{
-						name: '响应时间',
-						type: 'gauge',
-						center: ['50%', '50%'], // 图表的中心位置
-						radius: '50%',
-						min: 0,
-						max: 100,
-						splitNumber: 10,
-						axisLine: {
-							lineStyle: {
-								width: 10,
-								color: [[0.3, '#67e0e3'], [0.7, '#37a2da'], [1, '#fd666d']]
-							}
-						},
-						pointer: {
-							width: 5,
-						},
-						title: {
-							offsetCenter: [0, '-30%'], // 标题位置
-							fontSize: 14
-						},
-						detail: {
-							formatter: '{value}%',
-							fontSize: 16,
-							offsetCenter: [0, '60%']
-						},
-						data: [{ value: mockData[1].value, name: mockData[1].name }]
-					},
-					{
-						name: '可用性',
-						type: 'gauge',
-						center: ['80%', '50%'], // 图表的中心位置
-						radius: '50%',
-						min: 0,
-						max: 100,
-						splitNumber: 10,
-						axisLine: {
-							lineStyle: {
-								width: 10,
-								color: [[0.3, '#67e0e3'], [0.7, '#37a2da'], [1, '#fd666d']]
-							}
-						},
-						pointer: {
-							width: 5,
-						},
-						title: {
-							offsetCenter: [0, '-30%'], // 标题位置
-							fontSize: 14
-						},
-						detail: {
-							formatter: '{value}%',
-							fontSize: 16,
-							offsetCenter: [0, '60%']
-						},
-						data: [{ value: mockData[2].value, name: mockData[2].name }]
-					}
-				]
-			};
-
-			(<any>global.homeChartNodeHealthGauge).setOption(option);
-			(<any>state.myCharts).push(global.homeChartNodeHealthGauge);
-		}
-
 		// 批量设置 echarts resize
 		const initEchartsResizeFun = () => {
 			nextTick(() => {
@@ -556,15 +492,6 @@ export default defineComponent({
 					setTimeout(() => {
 						initAttackTypeChart();
 					}, 700);
-					setTimeout(() => {
-						initNodeHealthGaugeChart();
-					}, 800);
-					setTimeout(() => {
-						initRiskEventsBarChart();
-					}, 900);
-					setTimeout(() => {
-						initBarChart();
-					}, 1000);
 				});
 			},
 			{
@@ -575,9 +502,6 @@ export default defineComponent({
 		return {
 			networkTrafficRef,
 			attackTypeRef,
-			homeBarRiskEventsRef,
-			homeGaugeNodeHealthRef,
-			homeBarRef,
 			...toRefs(state),
 		};
 	},
@@ -593,6 +517,30 @@ $homeNavLengh: 8;
 
 .danger-color {
 	color: var(--el-color-danger-light-3);
+}
+
+.percentage-value {
+	display: block;
+	margin-top: 10px;
+	font-size: 28px;
+}
+
+.percentage-label {
+	display: block;
+	margin-top: 10px;
+	font-size: 15px;
+}
+
+.centered-col {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+.el-progress {
+	margin-top: 30px;
+	max-width: 600px;
 }
 
 .home-container {
@@ -651,7 +599,7 @@ $homeNavLengh: 8;
 	.home-card-two,
 	.home-card-three {
 		.home-card-item {
-			height: 400px;
+			height: 370px;
 			width: 100%;
 			overflow: hidden;
 
