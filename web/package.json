@@ -16,6 +16,7 @@
 		"@fast-crud/ui-element": "^1.20.1",
 		"@fast-crud/ui-interface": "^1.20.1",
 		"@iconify/vue": "^4.1.1",
+		"@kjgl77/datav-vue3": "^1.7.3",
 		"@types/lodash": "^4.14.202",
 		"@vitejs/plugin-vue-jsx": "^3.0.0",
 		"@wangeditor/editor": "^5.1.23",

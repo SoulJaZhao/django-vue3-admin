@@ -1,3 +1,4 @@
+<!-- 顶部视图 -->
 <template>
 	<el-header class="layout-header" v-show="!isTagsViewCurrenFull">
 		<NavBarsIndex />
