@@ -4,9 +4,12 @@
 			<div class="login-left-logo">
 				<img :src="siteLogo" />
 				<div class="login-left-logo-text">
-					<span>{{ getSystemConfig['login.site_title'] || getThemeConfig.globalViceTitle }}</span>
-					<span class="login-left-logo-text-msg">{{
-						getSystemConfig['login.site_name'] || getThemeConfig.globalViceTitleMsg }}</span>
+					<span>
+						<e-dynamic-text text="同济大学" />
+					</span>
+					<span class="login-left-logo-text-msg">
+						<e-dynamic-text text="物联网边缘节点入侵监控平台" />
+					</span>
 				</div>
 			</div>
 			<div class="login-left-img">
@@ -76,6 +79,7 @@ import loginIoT from '/@/assets/login-iot.svg';
 import loginBg from '/@/assets/login-bg.svg';
 import { SystemConfigStore } from '/@/stores/systemConfig'
 import { getBaseURL } from "/@/utils/baseUrl";
+import { EDynamicText } from 'e-datav-vue3';
 // 引入组件
 const Account = defineAsyncComponent(() => import('/@/views/system/login/component/account.vue'));
 const Mobile = defineAsyncComponent(() => import('/@/views/system/login/component/mobile.vue'));
@@ -114,10 +118,29 @@ const siteBg = computed(() => {
 	}
 });
 
+// 计算属性获取系统配置
+const titleText = computed(() => {
+  if (_.isEmpty(getSystemConfig.value['login.site_title'])) {
+		return getThemeConfig.globalViceTitle
+  } else {
+	return getSystemConfig.value['login.site_title']
+  }
+});
+
+const titleMessageText = computed(() => {
+	if (_.isEmpty(getSystemConfig['login.site_name'])) {
+		return getThemeConfig.globalViceTitleMsg
+  } else {
+	return getSystemConfig['login.site_name']
+  }
+});
+
 // 页面加载时
 onMounted(() => {
 	NextLoading.done();
 });
+
+
 </script>
 
 <style scoped lang="scss">
