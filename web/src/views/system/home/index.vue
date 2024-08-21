@@ -11,7 +11,7 @@
 							<span class="ml5 success-color">
 								<e-digital-flop font-size="20" color="statisticInfo.successColor" :value="statisticInfo.edgeNodeCountPercentage" :decimals="2" />%
 							</span>
-							<div class="mt10">在线边缘节点（个）</div>
+							<div class="mt10">边缘节点总数（个）</div>
 						</div>
 						<div class="home-card-item-icon flex" :style="{ background: `var(--next-color-primary-lighter)` }">
 							<i class="flex-margin font32 fa fa-meetup" :style="{ color: `var(--el-color-primary)` }"></i>
@@ -29,7 +29,7 @@
 							<span class="ml5 font16 danger-color">
 								<e-digital-flop font-size="20" color="statisticInfo.dangerColor" :value="statisticInfo.networkTafficPercentage" :decimals="2" />%
 							</span>
-							<div class="mt10">网络流量（TB）</div>
+							<div class="mt10">今日网络流量（TB）</div>
 						</div>
 						<div class="home-card-item-icon flex" :style="{ background: `var(--next-color-success-lighter)` }">
 							<i class="flex-margin font32 iconfont icon-ditu" :style="{ color: `var(--el-color-success)` }"></i>
@@ -47,7 +47,7 @@
 							<span class="ml5 font16 danger-color">
 								<e-digital-flop font-size="20" color="statisticInfo.dangerColor" :value="statisticInfo.noticeCountPercentage" :decimals="2" />%
 							</span>
-							<div class="mt10">未处理报警（件）</div>
+							<div class="mt10">今日报警事件（件）</div>
 						</div>
 						<div class="home-card-item-icon flex" :style="{ background: `var(--next-color-danger-lighter)` }">
 							<i class="flex-margin font32 fa fa-github-alt" :style="{ color: `var(--el-color-danger)` }"></i>
@@ -65,7 +65,7 @@
 							<span class="ml5 font16 success-color">
 								<e-digital-flop font-size="20" color="statisticInfo.successColor" :value="statisticInfo.healthScorePercentage" :decimals="2" />%
 							</span>
-							<div class="mt10">平台安全评分（%）</div>
+							<div class="mt10">今日安全评分（%）</div>
 						</div>
 						<div class="home-card-item-icon flex" :style="{ background: `var(--next-color-warning-lighter)` }">
 							<i class="flex-margin font32 iconfont icon-zaosheng" :style="{ color: `var(--el-color-warning)` }"></i>
