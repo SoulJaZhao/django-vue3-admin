@@ -19,19 +19,56 @@
 					</div>
 				</div>
 			</el-col>
-		</el-row>
-		<el-row :gutter="15" class="home-card-one mb15">
-			<el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6" v-for="(v, k) in homeOne" :key="k"
-				:class="{ 'home-media home-media-lg': k > 1, 'home-media-sm': k === 1 }">
+			<el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6" class="home-media home-media-lg">
 				<div class="home-card-item flex">
-					<div class="flex-margin flex w100" :class="` home-one-animation${k}`">
+					<div class="flex-margin flex w100">
 						<div class="flex-auto">
-							<e-digital-flop font-size="30" color="#000" :value="v.num1" />
-							<span class="ml5 font16" :style="{ color: `var(${v.color1})` }">{{ v.num2 }}%</span>
-							<div class="mt10">{{ v.num3 }}</div>
+							<span class="ml5 danger-color">
+								<e-digital-flop font-size="40" color="statisticInfo.dangerColor" :value="statisticInfo.networkTaffic" :decimals="2" />
+							</span>
+							<span class="ml5 font16 danger-color">
+								<e-digital-flop font-size="20" color="statisticInfo.dangerColor" :value="statisticInfo.networkTafficPercentage" :decimals="2" />%
+							</span>
+							<div class="mt10">网络流量（TB）</div>
 						</div>
-						<div class="home-card-item-icon flex" :style="{ background: `var(${v.color2})` }">
-							<i class="flex-margin font32" :class="v.num4" :style="{ color: `var(${v.color3})` }"></i>
+						<div class="home-card-item-icon flex" :style="{ background: `var(--next-color-success-lighter)` }">
+							<i class="flex-margin font32 iconfont icon-ditu" :style="{ color: `var(--el-color-success)` }"></i>
+						</div>
+					</div>
+				</div>
+			</el-col>
+			<el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6" class="home-media home-media-lg">
+				<div class="home-card-item flex">
+					<div class="flex-margin flex w100">
+						<div class="flex-auto">
+							<span class="ml5 danger-color">
+								<e-digital-flop font-size="40" color="statisticInfo.dangerColor" :value="statisticInfo.noticeCount" />
+							</span>
+							<span class="ml5 font16 danger-color">
+								<e-digital-flop font-size="20" color="statisticInfo.dangerColor" :value="statisticInfo.noticeCountPercentage" :decimals="2" />%
+							</span>
+							<div class="mt10">未处理报警（件）</div>
+						</div>
+						<div class="home-card-item-icon flex" :style="{ background: `var(--next-color-danger-lighter)` }">
+							<i class="flex-margin font32 fa fa-github-alt" :style="{ color: `var(--el-color-danger)` }"></i>
+						</div>
+					</div>
+				</div>
+			</el-col>
+			<el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6" class="home-media home-media-lg">
+				<div class="home-card-item flex">
+					<div class="flex-margin flex w100">
+						<div class="flex-auto">
+							<span class="ml5 success-color">
+								<e-digital-flop font-size="40" color="statisticInfo.successColor" :value="statisticInfo.healthScore" :decimals="2" />
+							</span>
+							<span class="ml5 font16 success-color">
+								<e-digital-flop font-size="20" color="statisticInfo.successColor" :value="statisticInfo.healthScorePercentage" :decimals="2" />%
+							</span>
+							<div class="mt10">平台安全评分（%）</div>
+						</div>
+						<div class="home-card-item-icon flex" :style="{ background: `var(--next-color-warning-lighter)` }">
+							<i class="flex-margin font32 iconfont icon-zaosheng" :style="{ color: `var(--el-color-warning)` }"></i>
 						</div>
 					</div>
 				</div>
@@ -125,47 +162,15 @@ export default defineComponent({
 			statisticInfo: {
 				edgeNodeCount: ref(7829),
 				edgeNodeCountPercentage: ref(-2.32),
+				networkTaffic: ref(57.82),
+				networkTafficPercentage: ref(+1.53),
+				noticeCount: ref(712),
+				noticeCountPercentage: ref(+1.20),
+				healthScore: ref(98.85),
+				healthScorePercentage: ref(-0.02),
 				successColor: ref('--el-color-success-light-3'),
 				dangerColor: ref('--el-color-danger-light-3')
 			},
-			homeOne: [
-				{
-					num1: ref(7829),
-					num2: '-2.32',
-					num3: '在线边缘节点（个）',
-					num4: 'fa fa-meetup',
-					color1: '--el-color-danger-light-3',
-					color2: '--next-color-primary-lighter',
-					color3: '--el-color-primary',
-				},
-				{
-					num1: ref(72),
-					num2: '+42.32',
-					num3: '今日流量（TB）',
-					num4: 'iconfont icon-ditu',
-					color1: '--el-color-success-light-3',
-					color2: '--next-color-success-lighter',
-					color3: '--el-color-success',
-				},
-				{
-					num1: ref(99),
-					num2: '+0.01',
-					num3: '系统健康评分（%）',
-					num4: 'iconfont icon-zaosheng',
-					color1: '--el-color-success-light-3',
-					color2: '--next-color-warning-lighter',
-					color3: '--el-color-warning',
-				},
-				{
-					num1: ref(732),
-					num2: '-1.05',
-					num3: '未处理报警（件）',
-					num4: 'fa fa-github-alt',
-					color1: '--el-color-danger-light-3',
-					color2: '--next-color-danger-lighter',
-					color3: '--el-color-danger',
-				},
-			],
 			homeThree: [
 				{
 					icon: 'iconfont icon-yangan',
