@@ -118,28 +118,10 @@ const siteBg = computed(() => {
 	}
 });
 
-// 计算属性获取系统配置
-const titleText = computed(() => {
-  if (_.isEmpty(getSystemConfig.value['login.site_title'])) {
-		return getThemeConfig.globalViceTitle
-  } else {
-	return getSystemConfig.value['login.site_title']
-  }
-});
-
-const titleMessageText = computed(() => {
-	if (_.isEmpty(getSystemConfig['login.site_name'])) {
-		return getThemeConfig.globalViceTitleMsg
-  } else {
-	return getSystemConfig['login.site_name']
-  }
-});
-
 // 页面加载时
 onMounted(() => {
 	NextLoading.done();
 });
-
 
 </script>
 
@@ -176,7 +158,8 @@ onMounted(() => {
 					margin-left: 10px;
 					font-size: 32px;
 					color: rgb(39, 94, 147);
-					font-weight: bolder; /* 设置字体变粗 */
+					font-weight: bolder;
+					/* 设置字体变粗 */
 				}
 
 				.login-left-logo-text-msg {
