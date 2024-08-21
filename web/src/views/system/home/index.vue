@@ -1,13 +1,33 @@
 <template>
 	<div class="home-container">
 		<el-row :gutter="15" class="home-card-one mb15">
+			<el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6" class="home-media home-media-lg">
+				<div class="home-card-item flex">
+					<div class="flex-margin flex w100">
+						<div class="flex-auto">
+							<span class="ml5 success-color">
+								<e-digital-flop font-size="40" color="statisticInfo.successColor" :value="statisticInfo.edgeNodeCount" />
+							</span>
+							<span class="ml5 success-color">
+								<e-digital-flop font-size="20" color="statisticInfo.successColor" :value="statisticInfo.edgeNodeCountPercentage" :decimals="2" />%
+							</span>
+							<div class="mt10">在线边缘节点（个）</div>
+						</div>
+						<div class="home-card-item-icon flex" :style="{ background: `var(--next-color-primary-lighter)` }">
+							<i class="flex-margin font32 fa fa-meetup" :style="{ color: `var(--el-color-primary)` }"></i>
+						</div>
+					</div>
+				</div>
+			</el-col>
+		</el-row>
+		<el-row :gutter="15" class="home-card-one mb15">
 			<el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6" v-for="(v, k) in homeOne" :key="k"
 				:class="{ 'home-media home-media-lg': k > 1, 'home-media-sm': k === 1 }">
 				<div class="home-card-item flex">
 					<div class="flex-margin flex w100" :class="` home-one-animation${k}`">
 						<div class="flex-auto">
-							<span class="font30">{{ v.num1 }}</span>
-							<span class="ml5 font16" :style="{ color: v.color1 }">{{ v.num2 }}%</span>
+							<e-digital-flop font-size="30" color="#000" :value="v.num1" />
+							<span class="ml5 font16" :style="{ color: `var(${v.color1})` }">{{ v.num2 }}%</span>
 							<div class="mt10">{{ v.num3 }}</div>
 						</div>
 						<div class="home-card-item-icon flex" :style="{ background: `var(${v.color2})` }">
@@ -75,6 +95,7 @@ import * as echarts from 'echarts';
 import { storeToRefs } from 'pinia';
 import { useThemeConfig } from '/@/stores/themeConfig';
 import { useTagsViewRoutes } from '/@/stores/tagsViewRoutes';
+import { EDigitalFlop } from 'e-datav-vue3';
 
 let global: any = {
 	homeChartOne: null,
@@ -87,6 +108,9 @@ let global: any = {
 
 export default defineComponent({
 	name: 'home',
+	components: {
+		EDigitalFlop
+	}, 
 	setup() {
 		const homeLineRef = ref();
 		const homePieRef = ref();
@@ -98,40 +122,46 @@ export default defineComponent({
 		const { themeConfig } = storeToRefs(storesThemeConfig);
 		const { isTagsViewCurrenFull } = storeToRefs(storesTagsViewRoutes);
 		const state = reactive({
+			statisticInfo: {
+				edgeNodeCount: ref(7829),
+				edgeNodeCountPercentage: ref(-2.32),
+				successColor: ref('--el-color-success-light-3'),
+				dangerColor: ref('--el-color-danger-light-3')
+			},
 			homeOne: [
 				{
-					num1: '49.28',
-					num2: '-12.32',
-					num3: '当日网络流量(TB)',
+					num1: ref(7829),
+					num2: '-2.32',
+					num3: '在线边缘节点（个）',
 					num4: 'fa fa-meetup',
-					color1: '#FF6462',
+					color1: '--el-color-danger-light-3',
 					color2: '--next-color-primary-lighter',
 					color3: '--el-color-primary',
 				},
 				{
-					num1: '15392',
+					num1: ref(72),
 					num2: '+42.32',
-					num3: '当日活跃连接（个）',
+					num3: '今日流量（TB）',
 					num4: 'iconfont icon-ditu',
-					color1: '#6690F9',
+					color1: '--el-color-success-light-3',
 					color2: '--next-color-success-lighter',
 					color3: '--el-color-success',
 				},
 				{
-					num1: '2365',
-					num2: '-17.32',
-					num3: '当日安全威胁事件（件）',
+					num1: ref(99),
+					num2: '+0.01',
+					num3: '系统健康评分（%）',
 					num4: 'iconfont icon-zaosheng',
-					color1: '#6690F9',
+					color1: '--el-color-success-light-3',
 					color2: '--next-color-warning-lighter',
 					color3: '--el-color-warning',
 				},
 				{
-					num1: '98.88',
-					num2: '+0.01',
-					num3: '当日系统健康评分（%）',
+					num1: ref(732),
+					num2: '-1.05',
+					num3: '未处理报警（件）',
 					num4: 'fa fa-github-alt',
-					color1: '#FF6462',
+					color1: '--el-color-danger-light-3',
 					color2: '--next-color-danger-lighter',
 					color3: '--el-color-danger',
 				},
@@ -600,6 +630,14 @@ export default defineComponent({
 
 <style scoped lang="scss">
 $homeNavLengh: 8;
+
+.success-color {
+	color: var(--el-color-success-light-3);
+}
+
+.danger-color {
+	color: var(--el-color-danger-light-3);
+}
 
 .home-container {
 	overflow: hidden;
