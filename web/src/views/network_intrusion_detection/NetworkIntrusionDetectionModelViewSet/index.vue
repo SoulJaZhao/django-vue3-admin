@@ -179,17 +179,10 @@
             </el-card>
         </el-col>
     </el-row>
-    <el-row>
-        <el-col :span="12" justify="center" align="center">
-            <el-card class="card-item">
-                
-            </el-card>
-        </el-col>
-    </el-row>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from 'vue';
+import { onMounted, defineComponent } from 'vue';
 import { EDigitalFlop } from 'e-datav-vue3';
 
 export default defineComponent({
@@ -198,6 +191,7 @@ export default defineComponent({
         EDigitalFlop,
     },
     setup() {
+
         onMounted(() => {
             
         });
@@ -208,6 +202,7 @@ export default defineComponent({
     },
 });
 </script>
+
 
 <style scoped lang="scss">
 .mb-15 {
