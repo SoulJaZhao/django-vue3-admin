@@ -220,14 +220,6 @@ export default defineComponent({
 		const { themeConfig } = storeToRefs(storesThemeConfig);
 		const { isTagsViewCurrenFull } = storeToRefs(storesTagsViewRoutes);
 
-		// ref 用法
-		const items = ref(Array(10).fill(0).map((item, index) => {
-			return {
-				label: `测试${index}`,
-				value: index * 100
-			}
-		}));
-
 		const state = reactive({
 			statisticInfo: {
 				edgeNodeCount: ref(7829),

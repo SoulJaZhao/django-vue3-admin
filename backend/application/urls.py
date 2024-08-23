@@ -123,6 +123,7 @@ urlpatterns = (
 
 My_Urls = (
 	[	
+        path('',include('network_intrusion_detection.urls')),
     ]
 )
 

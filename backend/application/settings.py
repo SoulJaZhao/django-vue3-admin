@@ -65,6 +65,7 @@ INSTALLED_APPS = [
 #主要添加如下代码
 My_Apps = [
     #新的应用写在这里
+    "network_intrusion_detection",
 ]
 
 INSTALLED_APPS += My_Apps
