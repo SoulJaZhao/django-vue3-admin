@@ -179,31 +179,126 @@
             </el-card>
         </el-col>
     </el-row>
+    <el-row>
+        <el-col :span="12" justify="center" align="center">
+            <el-card class="card-itme">
+                <v-chart ref="areaChart" :options="chartOptions" style="width: 100%; height: 400px;"></v-chart>
+            </el-card>
+        </el-col>
+    </el-row>
 </template>
 
 <script lang="ts">
-import { onMounted, defineComponent } from 'vue';
+import { onMounted, ref, defineComponent } from 'vue';
 import * as echarts from 'echarts';
-import { EDigitalFlop } from 'e-datav-vue3';
+import { use } from 'echarts/core';
+import { TitleComponent, TooltipComponent, LegendComponent, GridComponent, DatasetComponent, TransformComponent } from 'echarts/components';
+import { LineChart, AreaChart } from 'echarts/charts';
+import { CanvasRenderer } from 'echarts/renderers';
+import { VChart } from 'vue-echarts';
+
+// 注册需要的组件
+use([
+    TitleComponent,
+    TooltipComponent,
+    LegendComponent,
+    GridComponent,
+    DatasetComponent,
+    TransformComponent,
+    LineChart,
+    AreaChart,
+    CanvasRenderer
+]);
 
 export default defineComponent({
     name: "NetworkIntrusionDetectionModelViewSet",
     components: {
-        EDigitalFlop,
+        VChart,
     },
     setup() {
-        onMounted(() => {
+        const chartOptions = ref({
+            title: {
+                text: '网络流量实时监控'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['节点1', '节点2', '节点3']
+            },
+            xAxis: {
+                type: 'time',
+                boundaryGap: false,
+                axisLabel: {
+                    formatter: '{yyyy}-{MM}-{dd} {HH}:{mm}:{ss}'
+                }
+            },
+            yAxis: {
+                type: 'value',
+                name: '流量 (MB)',
+                min: 0
+            },
+            series: [
+                {
+                    name: '节点1',
+                    type: 'line',
+                    areaStyle: {},
+                    data: []
+                },
+                {
+                    name: '节点2',
+                    type: 'line',
+                    areaStyle: {},
+                    data: []
+                },
+                {
+                    name: '节点3',
+                    type: 'line',
+                    areaStyle: {},
+                    data: []
+                }
+            ]
+        });
 
+        onMounted(() => {
+            const areaChart = document.querySelector('.v-chart') as HTMLElement;
+            if (areaChart) {
+                const myChart = echarts.init(areaChart);
+
+                // 设置图表选项
+                myChart.setOption(chartOptions.value);
+
+                // 模拟实时数据更新
+                setInterval(() => {
+                    const now = new Date();
+                    const newData = {
+                        '节点1': [now.getTime(), Math.random() * 100],
+                        '节点2': [now.getTime(), Math.random() * 100],
+                        '节点3': [now.getTime(), Math.random() * 100]
+                    };
+
+                    myChart.setOption({
+                        series: myChart.getOption().series.map((series: any) => ({
+                            ...series,
+                            data: [...series.data, newData[series.name]]
+                        }))
+                    });
+                }, 1000);
+            }
         });
 
         return {
-
+            chartOptions
         };
     },
 });
-</script> 
+</script>
 
 <style scoped lang="scss">
+.el-row {
+    margin-bottom: 15px;
+}
+
 .card-item {
     width: 100%;
     min-height: 180px;
