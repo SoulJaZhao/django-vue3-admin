@@ -5,10 +5,12 @@
 				<img :src="siteLogo" />
 				<div class="login-left-logo-text">
 					<span>
-						<e-dynamic-text text="同济大学" :colors="['#337ecc', '#d9ecff']" />
+						同济大学
+						<!-- <e-dynamic-text text="同济大学" :colors="['#337ecc', '#d9ecff']" /> -->
 					</span>
 					<span class="login-left-logo-text-msg">
-						<e-dynamic-text text="物联网边缘节点入侵监控平台" :colors="['#337ecc', '#d9ecff']" />
+						基于边缘计算的物联网入侵检测系统
+						<!-- <e-dynamic-text text="物联网边缘节点入侵监控平台" :colors="['#337ecc', '#d9ecff']" /> -->
 					</span>
 				</div>
 			</div>
