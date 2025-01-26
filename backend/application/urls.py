@@ -125,6 +125,7 @@ My_Urls = (
 	[	
         path('',include('network_intrusion_detection.urls')),
         path('',include('host_anomaly_detection.urls')),
+        path('',include('host_management.urls')),
     ]
 )
 

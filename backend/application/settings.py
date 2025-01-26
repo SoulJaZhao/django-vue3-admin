@@ -67,6 +67,7 @@ My_Apps = [
     #新的应用写在这里
     "network_intrusion_detection",
     "host_anomaly_detection",
+    "host_management",
 ]
 
 INSTALLED_APPS += My_Apps
