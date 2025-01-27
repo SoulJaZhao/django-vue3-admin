@@ -9,7 +9,7 @@ from dvadmin.utils.models import CoreModel
 class HostModel(CoreModel):
     name = models.CharField(max_length=255, verbose_name="节点名称")
     os = models.CharField(max_length=255, verbose_name="操作系统")
-    status = models.IntegerField(verbose_name="状态")
+    status = models.TextField(verbose_name="状态")
     cpu_model = models.CharField(max_length=255, verbose_name="CPU型号")
     cpu_allocation = models.IntegerField(verbose_name="CPU核心数")
     memory_allocation = models.FloatField(verbose_name="内存大小")

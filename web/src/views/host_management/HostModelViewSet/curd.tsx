@@ -102,7 +102,7 @@ export default function ({ crudExpose }: { crudExpose: CrudExpose }): CreateCrud
 				os: {
 					title: '操作系统',
 					type: 'text',
-					search: { show: true },
+					search: { show: false },
 					column: {
 						minWidth: 120,
 						sortable: 'custom',
@@ -122,7 +122,7 @@ export default function ({ crudExpose }: { crudExpose: CrudExpose }): CreateCrud
 				cpu_model: {
 					title: 'CPU型号',
 					type: 'text',
-					search: { show: true },
+					search: { show: false },
 					column: {
 						minWidth: 120,
 						sortable: 'custom',
@@ -142,7 +142,7 @@ export default function ({ crudExpose }: { crudExpose: CrudExpose }): CreateCrud
 				cpu_allocation: {
 					title: 'CPU核心数',
 					type: 'number',
-					search: { show: true },
+					search: { show: false },
 					column: {
 						minWidth: 120,
 						sortable: 'custom',
@@ -162,7 +162,7 @@ export default function ({ crudExpose }: { crudExpose: CrudExpose }): CreateCrud
 				memory_allocation: {
 					title: '内存',
 					type: 'number',
-					search: { show: true },
+					search: { show: false },
 					column: {
 						minWidth: 120,
 						sortable: 'custom',
@@ -182,7 +182,7 @@ export default function ({ crudExpose }: { crudExpose: CrudExpose }): CreateCrud
 				disk_allocation: {
 					title: '硬盘',
 					type: 'number',
-					search: { show: true },
+					search: { show: false },
 					column: {
 						minWidth: 120,
 						sortable: 'custom',
@@ -242,7 +242,7 @@ export default function ({ crudExpose }: { crudExpose: CrudExpose }): CreateCrud
 				admin_notes: {
 					title: '备注',
 					type: 'text',
-					search: { show: true },
+					search: { show: false },
 					column: {
 						minWidth: 120,
 						sortable: 'custom',
@@ -256,6 +256,26 @@ export default function ({ crudExpose }: { crudExpose: CrudExpose }): CreateCrud
 						rules: [{ required: false, message: '备注必填' }],
 						component: {
 							placeholder: '请输入备注',
+						},
+					},
+				},
+				status: {
+					title: '状态',
+					type: 'text',
+					search: { show: false },
+					column: {
+						minWidth: 120,
+						sortable: 'custom',
+					},
+					form: {
+						helper: {
+							render() {
+								return <div style={"color:blue"}>状态是必需要填写的</div>;
+							}
+						},
+						rules: [{ required: false, message: '状态必填' }],
+						component: {
+							placeholder: '请输入状态',
 						},
 					},
 				},
