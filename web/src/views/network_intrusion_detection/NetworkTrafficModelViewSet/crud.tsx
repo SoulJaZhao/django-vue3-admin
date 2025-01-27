@@ -18,6 +18,7 @@ export default function ({ crudExpose }: { crudExpose: CrudExpose }): CreateCrud
         return await api.DelObj(row.id);
     };
     const addRequest = async ({ form }: AddReq) => {
+        console.log(form);
         return await api.AddObj(form);
     };
 
@@ -180,111 +181,6 @@ export default function ({ crudExpose }: { crudExpose: CrudExpose }): CreateCrud
                         },
                     },
                 },
-                packet_size: {
-                    title: '数据包大小',
-                    type: 'input',
-                    search: { show: false },
-                    column: {
-                        minWidth: 120,
-                        sortable: 'custom',
-                    },
-                    form: {
-                        rules: [{ required: true, message: '数据包大小必填' }],
-                        component: {
-                            placeholder: '请输入数据包大小',
-                        },
-                    },
-                },
-                flow_duration: {
-                    title: '流持续时间',
-                    type: 'input',
-                    search: { show: false },
-                    column: {
-                        minWidth: 120,
-                        sortable: 'custom',
-                    },
-                    form: {
-                        rules: [{ required: true, message: '流持续时间必填' }],
-                        component: {
-                            placeholder: '请输入流持续时间',
-                        },
-                    },
-                },
-                transport_layer: {
-                    title: '传输层协议',
-                    type: 'input',
-                    search: { show: false },
-                    column: {
-                        minWidth: 120,
-                        sortable: 'custom',
-                    },
-                    form: {
-                        rules: [{ required: true, message: '传输层协议必填' }],
-                        component: {
-                            placeholder: '请输入传输层协议',
-                        },
-                    },
-                },
-                application_layer: {
-                    title: '应用层协议',
-                    type: 'input',
-                    search: { show: false },
-                    column: {
-                        minWidth: 120,
-                        sortable: 'custom',
-                    },
-                    form: {
-                        rules: [{ required: true, message: '应用层协议必填' }],
-                        component: {
-                            placeholder: '请输入应用层协议',
-                        },
-                    },
-                },
-                traffic_type: {
-                    title: '流量类型',
-                    type: 'input',
-                    search: { show: false },
-                    column: {
-                        minWidth: 120,
-                        sortable: 'custom',
-                    },
-                    form: {
-                        rules: [{ required: true, message: '流量类型必填' }],
-                        component: {
-                            placeholder: '请输入流量类型',
-                        },
-                    },
-                },
-                attack_type: {
-                    title: '攻击类型',
-                    type: 'input',
-                    search: { show: false },
-                    column: {
-                        minWidth: 120,
-                        sortable: 'custom',
-                    },
-                    form: {
-                        rules: [{ required: true, message: '攻击类型必填' }],
-                        component: {
-                            placeholder: '请输入攻击类型',
-                        },
-                    },
-                },
-                app_data_size: {
-                    title: '应用数据大小',
-                    type: 'input',
-                    search: { show: false },
-                    column: {
-                        minWidth: 120,
-                        sortable: 'custom',
-                    },
-                    form: {
-                        rules: [{ required: true, message: '应用数据大小必填' }],
-                        component: {
-                            placeholder: '请输入应用数据大小',
-                        },
-                    },
-                },
                 in_bytes: {
                     title: '输入字节',
                     type: 'input',
@@ -357,6 +253,51 @@ export default function ({ crudExpose }: { crudExpose: CrudExpose }): CreateCrud
                         rules: [{ required: true, message: 'TCP标志必填' }],
                         component: {
                             placeholder: '请输入TCP标志',
+                        },
+                    },
+                },
+                flow_duration: {
+                    title: '流持续时间',
+                    type: 'input',
+                    search: { show: false },
+                    column: {
+                        minWidth: 120,
+                        sortable: 'custom',
+                    },
+                    form: {
+                        rules: [{ required: true, message: '流持续时间必填' }],
+                        component: {
+                            placeholder: '请输入流持续时间',
+                        },
+                    },
+                },
+                traffic_type: {
+                    title: '流量类型',
+                    type: 'input',
+                    search: { show: false },
+                    column: {
+                        minWidth: 120,
+                        sortable: 'custom',
+                    },
+                    form: {
+                        rules: [{ required: true, message: '流量类型必填' }],
+                        component: {
+                            placeholder: '请输入流量类型',
+                        },
+                    },
+                },
+                attack_type: {
+                    title: '攻击类型',
+                    type: 'input',
+                    search: { show: false },
+                    column: {
+                        minWidth: 120,
+                        sortable: 'custom',
+                    },
+                    form: {
+                        rules: [{ required: true, message: '攻击类型必填' }],
+                        component: {
+                            placeholder: '请输入攻击类型',
                         },
                     },
                 },
