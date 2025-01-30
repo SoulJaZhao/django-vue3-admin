@@ -16,3 +16,16 @@ class HostAnomalyDetectionModelViewSet(CustomModelViewSet):
     serializer_class = HostAnomalyDetectionModelSerializer
     create_serializer_class = HostAnomalyDetectionModelCreateUpdateSerializer
     update_serializer_class = HostAnomalyDetectionModelCreateUpdateSerializer
+
+class HostLoadModelViewSet(CustomModelViewSet):
+    """
+    list:查询
+    create:新增
+    update:修改
+    retrieve:单例
+    destroy:删除
+    """
+    queryset = HostAnomalyDetectionModel.objects.all()
+    serializer_class = HostAnomalyDetectionModelSerializer
+    create_serializer_class = HostAnomalyDetectionModelCreateUpdateSerializer
+    update_serializer_class = HostAnomalyDetectionModelCreateUpdateSerializer
