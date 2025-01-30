@@ -1,30 +1,16 @@
 <template>
   <div>
-    <el-row class="mb-15">
-      <el-col :span="24">
+    <el-row gutter="15" class="mb-15">
+      <el-col :span="12">
         <el-card class="card-itme">
           <el-row>
             <el-col :span="24" justify="center" align="center">
-              <el-text class="mx-1" tag="b" size="large">今日网络入侵告警事件</el-text>
+              <el-text class="mx-1" tag="b" size="large">网络入侵事件统计</el-text>
             </el-col>
           </el-row>
           <el-row>
-            <!-- 总数 -->
-            <el-col :span="2" justify="center" align="center">
-              <el-row>
-                <el-col :span="24">
-                  <e-digital-flop font-size="50" :value="1320" color="#007bff" />
-                </el-col>
-              </el-row>
-              <el-row>
-                <el-col :span="24">
-                  <el-text class="mx-1" tag="b" size="large" style="color: #007bff">总数</el-text>
-                </el-col>
-              </el-row>
-            </el-col>
-
             <!-- 后门攻击 -->
-            <el-col :span="2" justify="center" align="center">
+            <el-col :span="4" justify="center" align="center">
               <el-row>
                 <el-col :span="24">
                   <e-digital-flop font-size="50" :value="400" color="#28a745" />
@@ -38,7 +24,7 @@
             </el-col>
 
             <!-- DoS攻击 -->
-            <el-col :span="2" justify="center" align="center">
+            <el-col :span="4" justify="center" align="center">
               <el-row>
                 <el-col :span="24">
                   <e-digital-flop font-size="50" :value="220" color="#dc3545" />
@@ -52,7 +38,7 @@
             </el-col>
 
             <!-- DDoS攻击 -->
-            <el-col :span="2" justify="center" align="center">
+            <el-col :span="4" justify="center" align="center">
               <el-row>
                 <el-col :span="24">
                   <e-digital-flop font-size="50" :value="150" color="#6f42c1" />
@@ -66,7 +52,7 @@
             </el-col>
 
             <!-- SQL注入攻击 -->
-            <el-col :span="2" justify="center" align="center">
+            <el-col :span="4" justify="center" align="center">
               <el-row>
                 <el-col :span="24">
                   <e-digital-flop font-size="50" :value="110" color="#fd7e14" />
@@ -80,7 +66,7 @@
             </el-col>
 
             <!-- 中间人攻击 -->
-            <el-col :span="2" justify="center" align="center">
+            <el-col :span="4" justify="center" align="center">
               <el-row>
                 <el-col :span="24">
                   <e-digital-flop font-size="50" :value="80" color="#17a2b8" />
@@ -94,7 +80,7 @@
             </el-col>
 
             <!-- 密码攻击 -->
-            <el-col :span="2" justify="center" align="center">
+            <el-col :span="4" justify="center" align="center">
               <el-row>
                 <el-col :span="24">
                   <e-digital-flop font-size="50" :value="100" color="#ffc107" />
@@ -106,9 +92,10 @@
                 </el-col>
               </el-row>
             </el-col>
-
+          </el-row>
+          <el-row>
             <!-- 勒索病毒 -->
-            <el-col :span="2" justify="center" align="center">
+            <el-col :span="4" justify="center" align="center">
               <el-row>
                 <el-col :span="24">
                   <e-digital-flop font-size="50" :value="120" color="#795548" />
@@ -122,7 +109,7 @@
             </el-col>
 
             <!-- 扫描攻击 -->
-            <el-col :span="2" justify="center" align="center">
+            <el-col :span="4" justify="center" align="center">
               <el-row>
                 <el-col :span="24">
                   <e-digital-flop font-size="50" :value="90" color="#343a40" />
@@ -136,7 +123,7 @@
             </el-col>
 
             <!-- 命令注入 -->
-            <el-col :span="2" justify="center" align="center">
+            <el-col :span="4" justify="center" align="center">
               <el-row>
                 <el-col :span="24">
                   <e-digital-flop font-size="50" :value="50" color="#6c757d" />
@@ -150,7 +137,7 @@
             </el-col>
 
             <!-- XSS攻击 -->
-            <el-col :span="2" justify="center" align="center">
+            <el-col :span="4" justify="center" align="center">
               <el-row>
                 <el-col :span="24">
                   <e-digital-flop font-size="50" :value="60" color="#28a745" />
@@ -164,7 +151,7 @@
             </el-col>
 
             <!-- APT攻击 -->
-            <el-col :span="2" justify="center" align="center">
+            <el-col :span="4" justify="center" align="center">
               <el-row>
                 <el-col :span="24">
                   <e-digital-flop font-size="50" :value="40" color="#dc3545" />
@@ -176,59 +163,34 @@
                 </el-col>
               </el-row>
             </el-col>
+
+            <!-- 其他攻击 -->
+            <el-col :span="4" justify="center" align="center">
+              <el-row>
+                <el-col :span="24">
+                  <e-digital-flop font-size="50" :value="20" color="#007bff" />
+                </el-col>
+              </el-row>
+              <el-row>
+                <el-col :span="24">
+                  <el-text class="mx-1" tag="b" size="large" style="color: #007bff">其他攻击</el-text>
+                </el-col>
+              </el-row>
+            </el-col>
           </el-row>
         </el-card>
       </el-col>
-    </el-row>
-    <el-row gutter="15" class="mb-15">
       <el-col :span="12">
         <el-card class="card-item">
-          <div ref="totalChartRef" style="width: 100%; height: 320px"></div>
-        </el-card>
-      </el-col>
-      <el-col :span="12">
-        <el-card class="card-item">
-          <div ref="heatmapChartRef" style="width: 100%; height: 320px"></div>
+          <div ref="totalChartRef" style="width: 100%; height: 203px"></div>
         </el-card>
       </el-col>
     </el-row>
+
     <el-row gutter="15" class="mb-15">
-      <el-col :span="5">
-        <el-card class="card-item">
-          <el-text class="mx-1" tag="b" size="large">告警处理进度</el-text>
-          <el-progress :text-inside="true" :stroke-width="25" :percentage="31" status="exception" striped striped-flow
-            :duration="10" class="mt-15">
-            <span>后门攻击 31%</span>
-          </el-progress>
-          <el-progress :text-inside="true" :stroke-width="22" :percentage="41" status="exception" striped striped-flow
-            :duration="10" class="mt-15">
-            <span>DoS攻击 41%</span>
-          </el-progress>
-          <el-progress :text-inside="true" :stroke-width="25" :percentage="61" status="warning" striped striped-flow
-            :duration="10" class="mt-15">
-            <span>DDoS攻击 61%</span>
-          </el-progress>
-          <el-progress :text-inside="true" :stroke-width="25" :percentage="71" status="warning" striped striped-flow
-            :duration="10" class="mt-15">
-            <span>SQL注入攻击 71%</span>
-          </el-progress>
-          <el-progress :text-inside="true" :stroke-width="25" :percentage="91" striped striped-flow :duration="10"
-            status="successful" class="mt-15">
-            <span>中间人攻击 91%</span>
-          </el-progress>
-          <el-progress :text-inside="true" :stroke-width="25" :percentage="95" striped striped-flow :duration="10"
-            status="success" class="mt-15">
-            <span>密码攻击 95%</span>
-          </el-progress>
-          <el-progress :text-inside="true" :stroke-width="25" :percentage="97" striped striped-flow :duration="10"
-            status="success" class="mt-15">
-            <span>勒索病毒 97%</span>
-          </el-progress>
-        </el-card>
-      </el-col>
       <el-col :span="6">
         <el-card class="card-item">
-          <el-text class="mx-1" tag="b" size="large">模型效果</el-text>
+          <el-text class="mx-1" tag="b" size="large">模型二分类效果</el-text>
           <el-row class="mt-15">
             <el-col :span="12" justify="center" align="center">
               <el-progress type="dashboard" stroke-width="10" stroke-color="#fff" :percentage="97">
@@ -265,9 +227,113 @@
           </el-row>
         </el-card>
       </el-col>
-      <el-col :span="13" justify="center" align="center">
+      <el-col :span="6">
         <el-card class="card-item">
-          <div ref="gradientChartRef" style="width: 100%; height: 305px"></div>
+          <el-text class="mx-1" tag="b" size="large">模型多分类效果</el-text>
+          <el-row class="mt-15">
+            <el-col :span="12" justify="center" align="center">
+              <el-progress type="dashboard" stroke-width="10" stroke-color="#fff" :percentage="96">
+                <template #default="{ percentage }">
+                  <span class="percentage-value" style="color: #409eff">{{ percentage }}%</span>
+                  <span class="percentage-label" style="color: #409eff">精确率</span>
+                </template>
+              </el-progress>
+            </el-col>
+            <el-col :span="12" justify="center" align="center">
+              <el-progress type="dashboard" stroke-width="10" :percentage="96" status="success">
+                <template #default="{ percentage }">
+                  <span class="percentage-value">{{ percentage }}%</span>
+                  <span class="percentage-label">召回率</span>
+                </template>
+              </el-progress>
+            </el-col>
+            <el-col :span="12" justify="center" align="center">
+              <el-progress type="dashboard" stroke-width="10" :percentage="96" status="warning">
+                <template #default="{ percentage }">
+                  <span class="percentage-value">{{ percentage }}%</span>
+                  <span class="percentage-label">准确率</span>
+                </template>
+              </el-progress>
+            </el-col>
+            <el-col :span="12" justify="center" align="center">
+              <el-progress type="dashboard" stroke-width="10" :percentage="96" status="exception">
+                <template #default="{ percentage }">
+                  <span class="percentage-value">{{ percentage }}%</span>
+                  <span class="percentage-label">F1得分</span>
+                </template>
+              </el-progress>
+            </el-col>
+          </el-row>
+        </el-card>
+      </el-col>
+      <el-col :span="12">
+        <el-card class="card-item">
+          <el-text class="mx-1" tag="b" size="large">网络入侵事件处理进度</el-text>
+          <el-progress :text-inside="true" :stroke-width="25" :percentage="31" status="exception" striped-flow
+            :duration="10" class="mt-15">
+            <span>后门攻击 31%</span>
+          </el-progress>
+          <el-progress :text-inside="true" :stroke-width="22" :percentage="41" status="exception" striped-flow
+            :duration="10" class="mt-15">
+            <span>DoS攻击 41%</span>
+          </el-progress>
+          <el-progress :text-inside="true" :stroke-width="25" :percentage="61" status="warning" striped-flow
+            :duration="10" class="mt-15">
+            <span>DDoS攻击 61%</span>
+          </el-progress>
+          <el-progress :text-inside="true" :stroke-width="25" :percentage="71" status="warning" striped-flow
+            :duration="10" class="mt-15">
+            <span>SQL注入攻击 71%</span>
+          </el-progress>
+          <el-progress :text-inside="true" :stroke-width="25" :percentage="91" striped-flow :duration="10"
+            status="successful" class="mt-15">
+            <span>中间人攻击 91%</span>
+          </el-progress>
+          <el-progress :text-inside="true" :stroke-width="25" :percentage="95" striped-flow :duration="10"
+            status="success" class="mt-15">
+            <span>密码攻击 95%</span>
+          </el-progress>
+          <el-progress :text-inside="true" :stroke-width="25" :percentage="97" striped-flow :duration="10"
+            status="success" class="mt-15">
+            <span>勒索病毒 97%</span>
+          </el-progress>
+        </el-card>
+      </el-col>
+    </el-row>
+
+    <el-row gutter="15" class="mb-15">
+      <el-col :span="24">
+        <el-card class="card-itme">
+          <el-text class="mx-1" tag="b" size="large">最新网络入侵告警</el-text>
+          <el-table :data="tableData" style="width: 100%">
+            <el-table-column prop="date" label="时间" width="200" />
+            <el-table-column prop="src_node" label="源节点" width="150" />
+            <el-table-column prop="dst_node" label="目标节点" width="150" />
+            <el-table-column prop="src_ip" label="源IP地址" width="150" />
+            <el-table-column prop="dst_ip" label="目标IP地址" width="150" />
+            <el-table-column prop="src_port" label="源端口号" width="150" />
+            <el-table-column prop="dst_port" label="目标端口号" width="150" />
+            <el-table-column prop="attack_type" label="攻击类型" width="150" />
+
+            <!-- 操作列 -->
+            <el-table-column fixed="right" label="操作" min-width="200">
+              <template #default="{ row }">
+                <el-button link type="primary" size="small" @click="handleDetail(row)">
+                  详情
+                </el-button>
+                <el-button link type="success" size="small" @click="handleProcess(row)">
+                  处理
+                </el-button>
+                <el-button link type="warning" size="small" @click="handleResolve(row)">
+                  标记已解决
+                </el-button>
+                <el-button link type="danger" size="small" @click="handleDelete(row)">
+                  删除
+                </el-button>
+              </template>
+            </el-table-column>
+          </el-table>
+
         </el-card>
       </el-col>
     </el-row>
@@ -299,6 +365,36 @@ export default defineComponent({
     let totalChart: echarts.ECharts | null = null;
     let heatmapChart: echarts.ECharts | null = null;
     let gradientChart: echarts.ECharts | null = null;
+
+    const generateDate = () => {
+      const now = new Date();
+      return now.toLocaleString("zh-CN", { hour12: false });
+    };
+
+    const tableData = ref([
+      {
+        date: generateDate(), // 生成当前时间
+        src_node: "测试节点01",
+        dst_node: "测试节点02",
+        src_ip: "192.168.1.1",
+        dst_ip: "192.168.1.2",
+        src_port: "8080",
+        dst_port: "443",
+        attack_type: "SQL注入",
+      },
+      {
+        date: generateDate(), // 生成当前时间
+        src_node: "测试节点03",
+        dst_node: "测试节点04",
+        src_ip: "192.168.2.1",
+        dst_ip: "192.168.2.2",
+        src_port: "22",
+        dst_port: "80",
+        attack_type: "DDoS",
+      },
+    ]);
+
+
 
     const initCharts = () => {
       if (totalChartRef.value) {
@@ -543,12 +639,17 @@ export default defineComponent({
     });
 
     return {
+      tableData,
       totalChartRef,
       heatmapChartRef,
       gradientChartRef,
     };
   },
 });
+
+const handleClick = () => {
+  console.log('click')
+}
 </script>
 
 <style scoped lang="scss">
